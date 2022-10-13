@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: chocolate;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+    </style>
+</head>
+<body>
+<header th:fragment="header" class="sticky-top">
+    <div class="container-fluid bg-black-500 d-flex myCSS" style="height: 100px;background-color: cornflowerblue"
+         th:fragment="">
+        <img class="h-100 p-4" src="https://www.furama.com/images/LOGOFurama_4C_Normal.png" alt="">
+        <img class="ms-5 ps-5"
+             src="https://furamavietnam.com/wp-content/uploads/2019/02/Ariyana-Tourism-Complex-02-2.png"
+             alt="">
+
+        <div class="container-fluid text-end my-4 me-4">
+            <span class="badge text-bg-warning mt-3" style="font-size: 15px"> Võ Văn Tý
+            </span>
+        </div>
+    </div>
+
+    <div>
+
+        <nav class="navbar navbar-expand-lg" style="background-color: #b6effb">
+
+            <div class="container-fluid mx-5">
+                <a class="navbar-brand" href="castudy.html">Trang Chủ</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown ms-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">Loại Phòng</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="facility.html">Danh Sách Phòng</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown ms-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">Khách Hàng</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" th:href="@{/customer/list}">Danh Sách Khách Hàng</a></li>
+                                <li><a class="dropdown-item" th:href="@{/customer/create}">Thêm Mới Khách Hàng</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown ms-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">Dịch Vụ</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" th:href="@{/facility/list}">Danh Sách Cơ Sở</a></li>
+                                <li><a class="dropdown-item" th:href="@{/facility/create}">Thêm Mới Cơ sở</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown ms-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">Hợp Đồng</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" th:href="@{/contract/list}">Danh Sách Hợp Đồng</a></li>
+                                <li><a class="dropdown-item" href="#">Thêm Mói Hợp Đồng</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!--                <form class="d-flex my-2" role="search" >-->
+                    <!--                    <input class="form-control me-2" type="search" placeholder="Tìm Kiếm" aria-label="Search">-->
+                    <!--                    <button class="btn btn-outline-success" type="submit">-->
+                    <!--                        <i class="fa-solid fa-magnifying-glass"></i></button>-->
+                    <!--                </form>-->
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<h1 style="text-align: center;margin-top: 20px">Danh Sách Phòng</h1>
+
+
+<div class="container" style="margin-top: 50px">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card" style="width: 26rem;">
+                        <img src="https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
+                             class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">PHÒNG SUITE HƯỚNG BIỂN</h5>
+                            <p class="card-text">Diện Tích Phòng 45m<sup>2</sup></p>
+                            <button
+                                    class="btn btn-danger justify-content-end" style="text-align: right"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteFacility">
+                                <span class="  text-light h6 m-auto px-2">Xóa </span>
+                            </button>
+
+                            <a href="edit.html" class="btn btn-warning justify-content-end" style="text-align: right">Chỉnh
+                                Sửa</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card" style="width: 26rem;margin-left: 10px">
+                        <img src="https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Studio-Suite-F-370x239.jpg"
+                             class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">PHÒNG DELUXE HƯỞNG DƯƠNG</h5>
+                            <p class="card-text">Diện Tích Phòng 45m<sup>2</sup></p>
+                            <button
+                                    class="btn btn-danger justify-content-end" style="text-align: right"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteFacility">
+                                <span class="  text-light h6 m-auto px-2">Xóa </span>
+                            </button>
+
+                            <a href="edit.html" class="btn btn-warning justify-content-end" style="text-align: right">Chỉnh
+                                Sửa</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card" style="width: 26rem;margin-left: 20px">
+                        <img src="https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Deluxe-double-bed-F-370x239.jpg"
+                             class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">PHÒNG SUITE HƯỚNG BIỂN</h5>
+                            <p class="card-text">Diện Tích Phòng 45m<sup>2</sup></p>
+                            <button
+                                    class="btn btn-danger justify-content-end" style="text-align: right"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteFacility">
+                                <span class="  text-light h6 m-auto px-2">Xóa </span>
+                            </button>
+
+                            <a href="edit.html" class="btn btn-warning justify-content-end" style="text-align: right">Chỉnh
+                                Sửa</a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 50px">
+        <div class="col-lg-12">
+            <div class="row">
+
+                <div class="col-lg-4">
+                    <div class="card" style="width: 26rem;">
+                        <img src="https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
+                             class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">PHÒNG SUITE HƯỚNG BIỂN</h5>
+                            <p class="card-text">Diện Tích Phòng 45m<sup>2</sup></p>
+                            <button
+                                    class="btn btn-danger justify-content-end" style="text-align: right"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteFacility">
+                                <span class="  text-light h6 m-auto px-2">Xóa </span>
+                            </button>
+
+                            <a href="edit.html" class="btn btn-warning justify-content-end" style="text-align: right">Chỉnh
+                                Sửa</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card" style="width: 26rem;margin-left: 10px">
+                        <img src="https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Studio-Suite-F-370x239.jpg"
+                             class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">PHÒNG DELUXE HƯỞNG DƯƠNG</h5>
+                            <p class="card-text">Diện Tích Phòng 45m<sup>2</sup></p>
+                            <button
+                                    class="btn btn-danger justify-content-end" style="text-align: right"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteFacility">
+                                <span class="  text-light h6 m-auto px-2">Xóa </span>
+                            </button>
+
+                            <a href="edit.html" class="btn btn-warning justify-content-end" style="text-align: right">Chỉnh
+                                Sửa</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card" style="width: 26rem;margin-left: 20px">
+                        <img src="https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Deluxe-double-bed-F-370x239.jpg"
+                             class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">PHÒNG SUITE HƯỚNG BIỂN</h5>
+                            <p class="card-text">Diện Tích Phòng 45m<sup>2</sup></p>
+
+                            <button
+                                    class="btn btn-danger justify-content-end" style="text-align: right"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteFacility">
+                                <span class="  text-light h6 m-auto px-2">Xóa </span>
+                            </button>
+
+                            <a href="edit.html" class="btn btn-warning justify-content-end" style="text-align: right">Chỉnh
+                                Sửa</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav aria-label="Page navigation example" style="margin-top: 20px">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="modal fade" id="deleteFacility" tabindex="-1" aria-labelledby="exampleModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel1">Bạn có chắc chắn muốn xóa?</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form >
+                <div class="modal-body">
+                    <span class="h6" >Dịch Vụ:</span><strong id="nameDelete" class="text-danger ps-2">Villa</strong>
+                    <input type="hidden" name="idDelete" id="idDelete" readonly/>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-danger" value="delete">Xóa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div class="container-fluid " style="margin-top: 70px;padding: 0">
+    <div class="row">
+        <div class="col-lg-2 bg-success  p-2 text-dark bg-opacity-50"></div>
+
+        <div class="col-lg-3 bg-success p-2 text-dark bg-opacity-10">
+            <h3 style="color: chocolate;margin-top: 70px">Hướng Dẫn Di Chuyển</h3>
+            <pre>Khu nghỉ dưỡng Furama là cơ sở hàng đầu để
+khám phá một trong những điểm đến hấp dẫn nhất
+Châu Á. Chỉ cách Đà Nẵng một quãng lái xe ngắn
+là bốn Di sản Văn hóa Thế giới được
+UNESCO công nhận:</pre>
+            <a href="#" class="btn btn-success btn-with-arrow js-footer-map-toggle"><i
+                    class="icon-placeholder"></i><span
+                    class="opened-text">Xem Trên Bản Đồ</span></a>
+            <h5 style="margin-top: 20px;color: chocolate">ĐỊA ĐIỂM</h5>
+            <pre><b>1. Cô Đô Huế</b>                       2 Tiếng</pre>
+            <hr>
+            <pre><b>2. Phố Cổ Hội An </b>                  30 Phút</pre>
+            <hr>
+            <pre><b>1. Thánh địa Mỹ Sơn </b>               90 phút</pre>
+            <hr>
+            <pre><b>1. PĐộng Phong Nha </b>                3 Tiếng</pre>
+            <hr>
+        </div>
+        <div class="col-lg-7 bg-success  p-2 text-dark bg-opacity-50">
+            <div class="row" style="margin-top: 70px">
+                <div class="col-lg-4">
+                    <ul class="abc" style="margin-left: 50px">
+                        <li><a href="#">Giá Công Bố</a></li>
+                        <li><a href="#">Lifestyle Blog</a></li>
+                        <li><a href="">Tuyển Dụng</a></li>
+                        <li><a href="#">Tuyển Dụng</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <h5 style="color: chocolate">LIÊN HỆ</h5>
+                    <pre style="text-align: justify">103 - 105 Vo Nguyen Giap Street, Khue My Ward,
+Ngu Hanh Son District, Danang City, Vietnam
+Tel.: 84-236-3847 333/888 * Fax: 84-236-3847 666
+Email: reservation@furamavietnam.com *
+www.furamavietnam.com
+GDS Codes: Amadeus-GD DADFUR, Galileo/Apollo-GD 16236,
+Sabre-GD 032771,
+Worldspan- GD DADFU</pre>
+                    <img style="width: 32px;height: 32px;float: left"
+                         src="https://furamavietnam.com/wp-content/uploads/2019/06/incon-Facbook-1.png"
+                         alt=""
+                         width="32" height="32">
+                    <img style="width: 40px;height: 32px;float: left"
+                         src="https://furamavietnam.com/wp-content/uploads/2019/06/social-ins.png"
+                         alt="" width="40"
+                         height="32">
+                    <img style="width: 40px;height: 32px;float: left"
+                         src="https://furamavietnam.com/wp-content/uploads/2021/10/social-youtube.png"
+                         alt=""
+                         width="40" height="32">
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div style="margin-top: 100px;margin-left: 90px">
+                <img src="https://furamavietnam.com/wp-content/uploads/2019/02/Ariyana-Tourism-Complex-02-2.png"
+                     alt="Ariyana Tourism Complex" width="500px;" style="height: 100px;width: 600px">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    <div class="container-fluid " style="width: 99%">-->
+<!--        <div class="row">-->
+<!--            <div class="cog-lg-2 ">-->
+<!--            </div>-->
+<!--            <div class="cog-lg-4"></div>-->
+<!--            <div class="cog-lg-4"></div>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
