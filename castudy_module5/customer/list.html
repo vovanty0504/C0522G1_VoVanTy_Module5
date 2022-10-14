@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <head>
+        <link rel="stylesheet" href="datatables/css/dataTables.bootstrap4.min.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+        <title>Home</title>
+        <style>
+            table {
+                border: solid 3px;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            body {
+                overflow-x: hidden;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+            .content{
+                background-image: url("https://nhathauxaydung24h.com/wp-content/uploads/2021/11/nen-trang-duc-1.jpg");
+
+            }
+
+            .pagination{
+                margin: 0;
+            }
+            .table{
+                margin: 0;
+            }
+
+        </style>
+    </head>
+<body>
+<div class="content">
+<header th:fragment="header" class="sticky-top">
+    <div class="container-fluid bg-black-500 d-flex myCSS" style="height: 100px;background-color: cornflowerblue"
+         th:fragment="">
+        <img class="h-100 p-4" src="https://www.furama.com/images/LOGOFurama_4C_Normal.png" alt="">
+        <img class="ms-5 ps-5"
+             src="https://furamavietnam.com/wp-content/uploads/2019/02/Ariyana-Tourism-Complex-02-2.png"
+             alt="">
+
+        <div class="container-fluid text-end my-4 me-4">
+            <span class="badge text-bg-warning mt-3" style="font-size: 15px"> Võ Văn Tý
+            </span>
+        </div>
+    </div>
+
+    <div>
+
+        <nav class="navbar navbar-expand-lg" style="background-color: #b6effb">
+
+            <div class="container-fluid mx-5">
+                <a class="navbar-brand" href="../home/home.html">Trang Chủ</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown ms-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">Loại Phòng</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="facility/facility.html">Danh Sách Phòng</a></li>
+
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown ms-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">Khách Hàng</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" th:href="@{/customer/list}">Danh Sách Khách Hàng</a></li>
+                                <li><a class="dropdown-item" th:href="@{/customer/create}">Thêm Mới Khách Hàng</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown ms-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">Dịch Vụ</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" th:href="@{/facility/list}">Danh Sách Cơ Sở</a></li>
+                                <li><a class="dropdown-item" th:href="@{/facility/create}">Thêm Mới Cơ sở</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown ms-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">Hợp Đồng</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" th:href="@{/contract/list}">Danh Sách Hợp Đồng</a></li>
+                                <li><a class="dropdown-item" href="#">Thêm Mói Hợp Đồng</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!--                <form class="d-flex my-2" role="search" >-->
+                    <!--                    <input class="form-control me-2" type="search" placeholder="Tìm Kiếm" aria-label="Search">-->
+                    <!--                    <button class="btn btn-outline-success" type="submit">-->
+                    <!--                        <i class="fa-solid fa-magnifying-glass"></i></button>-->
+                    <!--                </form>-->
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+<h1  class="text-center" style="margin-top: 50px">Danh Sách Khách Hàng</h1>
+<nav class="navbar navbar-expand-lg pb-0 mb-0">
+    <div class="container-fluid">
+        <a href="create.html">
+            <button class="btn btn-success btn-outline-secondary btn-sm">
+                <span class="fa-solid fa-person-circle-plus text-light h5 my-auto me-1"></span>
+                <span class="text-light"> Thêm Mới Khách Hàng</span>
+            </button>
+        </a>
+
+        <form class="d-flex my-2" role="search" action="#">
+            <input class="form-control me-2" type="text" placeholder="Tìm Kiếm Tên"
+                   aria-label="Search"
+                   name="nameSearch">
+
+            <input class="form-control me-2" type="text" placeholder="Tìm Kiếm Địa Chỉ"
+                   aria-label="Search"
+                   name="addressSearch">
+
+
+            <input class="form-control me-2" type="text"
+                   placeholder="Tìm Kiến Số Điện Thoại" aria-label="Search"
+                   name="phoneSearch">
+
+            <button class="btn btn-outline-success" type="submit" name="action" value="search">
+                <i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
+</nav>
+
+
+<table class="table table-striped table-bordered" id="customerTable">
+    <thead class="table-dark">
+    <tr>
+        <th>STT</th>
+        <th>Tên Khách Hàng</th>
+        <th>Ngày Sinh</th>
+        <th>Giới Tính</th>
+        <th>CCCD/CMND</th>
+        <th>Số Điện Thoại</th>
+        <th>Email</th>
+        <th>Địa Chỉ</th>
+        <th>Loại Khách Hàng</th>
+        <th>Sửa</th>
+        <th>Xóa</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>Võ Văn Tý</td>
+        <td>05/04/2001</td>
+        <td>Nam</td>
+        <td>123456789</td>
+        <td>090900909</td>
+        <td>vovanty0504@gmail.com</td>
+        <td>31 lê đình kỵ</td>
+        <td>Vip</td>
+        <td class="text-center">
+            <a href="edit.html">
+                <button class="btn btn-success btn-outline-secondary btn-sm">
+                    <span class="fa-solid fa-user-pen text-light h6 m-auto px-2"></span>
+                </button>
+            </a>
+        </td>
+        <td class="text-center">
+            <button
+                    class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#deleteCustomer">
+                <span class="fa-solid fa-person-circle-minus text-light h6 m-auto px-2"></span>
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Võ Văn Tý</td>
+        <td>05/04/2001</td>
+        <td>Nam</td>
+        <td>123456789</td>
+        <td>090900909</td>
+        <td>vovanty0504@gmail.com</td>
+        <td>31 lê đình kỵ</td>
+        <td>Vip</td>
+        <td class="text-center">
+            <a href="edit.html">
+                <button class="btn btn-success btn-outline-secondary btn-sm">
+                    <span class="fa-solid fa-user-pen text-light h6 m-auto px-2"></span>
+                </button>
+            </a>
+        </td>
+        <td class="text-center">
+            <button
+                    class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#deleteCustomer">
+                <span class="fa-solid fa-person-circle-minus text-light h6 m-auto px-2"></span>
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Võ Văn Tý</td>
+        <td>05/04/2001</td>
+        <td>Nam</td>
+        <td>123456789</td>
+        <td>090900909</td>
+        <td>vovanty0504@gmail.com</td>
+        <td>31 lê đình kỵ</td>
+        <td>Vip</td>
+        <td class="text-center">
+            <a href="edit.html">
+                <button class="btn btn-success btn-outline-secondary btn-sm">
+                    <span class="fa-solid fa-user-pen text-light h6 m-auto px-2"></span>
+                </button>
+            </a>
+        </td>
+        <td class="text-center">
+            <button
+                    class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#deleteCustomer">
+                <span class="fa-solid fa-person-circle-minus text-light h6 m-auto px-2"></span>
+            </button>
+        </td>
+
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Võ Văn Tý</td>
+        <td>05/04/2001</td>
+        <td>Nam</td>
+        <td>123456789</td>
+        <td>090900909</td>
+        <td>vovanty0504@gmail.com</td>
+        <td>31 lê đình kỵ</td>
+        <td>Vip</td>
+        <td class="text-center">
+            <a href="edit.html">
+                <button class="btn btn-success btn-outline-secondary btn-sm">
+                    <span class="fa-solid fa-user-pen text-light h6 m-auto px-2"></span>
+                </button>
+            </a>
+        </td>
+        <td class="text-center">
+            <button
+                    class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#deleteCustomer">
+                <span class="fa-solid fa-person-circle-minus text-light h6 m-auto px-2"></span>
+            </button>
+        </td>
+
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Võ Văn Tý</td>
+        <td>05/04/2001</td>
+        <td>Nam</td>
+        <td>123456789</td>
+        <td>090900909</td>
+        <td>vovanty0504@gmail.com</td>
+        <td>31 lê đình kỵ</td>
+        <td>Vip</td>
+        <td class="text-center">
+            <a href="edit.html">
+                <button class="btn btn-success btn-outline-secondary btn-sm">
+                    <span class="fa-solid fa-user-pen text-light h6 m-auto px-2"></span>
+                </button>
+            </a>
+        </td>
+        <td class="text-center">
+            <button
+                    class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#deleteCustomer">
+                <span class="fa-solid fa-person-circle-minus text-light h6 m-auto px-2"></span>
+            </button>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" id="deleteCustomer" tabindex="-1" aria-labelledby="exampleModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel1">Bạn có chắc chắn muốn xóa?</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="#">
+                <div class="modal-body">
+                    <span class="h6">Khách hàng:</span><strong id="nameDelete" class="text-danger ps-2">Võ Văn
+                    Tý</strong>
+                    <input type="hidden" name="idDelete" id="idDelete" readonly/>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-danger" value="delete">Xóa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            <a class="page-link" href="@{'/customer/list'(page=${customerList.number - 1}, nameSearch=${nameSearch}, addressSearch=${addressSearch},
+    phoneSearch=${phoneSearch})}" if="${customerList.hasPrevious()}" aria-label="Previous">
+                <span aria-hidden="true">&laquo; Previous</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" text="${customerList.number }"
+                                 href="@{'/customer/list'(page=${customerList.number - 1}, nameSearch=${nameSearch}, addressSearch=${addressSearch},
+    phoneSearch=${phoneSearch})}" if="${customerList.hasPrevious()}">1</a></li>
+        <li class="page-item"><a class="page-link" text="${customerList.number + 1}">2</a></li>
+        <li class="page-item"><a class="page-link" text="${customerList.number + 2}"
+                                 href="@{'/customer/list'(page=${customerList.number + 1},nameSearch=${nameSearch},addressSearch=${addressSearch},
+    phoneSearch=${phoneSearch})}" if="${customerList.hasNext()}">3</a></li>
+        <!--        <li class="page-item"><a class="page-link" th:text="${customerList.totalPages}"></a></li>-->
+        <li class="page-item">
+            <a class="page-link" href="@{'/customer/list'(page=${customerList.number + 1},nameSearch=${nameSearch},addressSearch=${addressSearch},
+    phoneSearch=${phoneSearch})}" if="${customerList.hasNext()}" aria-label="Next">
+                <span aria-hidden="true">Next &raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+</div>
+
+
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-lg-2 bg-success  p-2 text-dark bg-opacity-50"></div>
+
+        <div class="col-lg-3 bg-success p-2 text-dark bg-opacity-10">
+            <h3 style="color: chocolate;margin-top: 70px">Hướng Dẫn Di Chuyển</h3>
+            <pre>Khu nghỉ dưỡng Furama là cơ sở hàng đầu để
+khám phá một trong những điểm đến hấp dẫn nhất
+Châu Á. Chỉ cách Đà Nẵng một quãng lái xe ngắn
+là bốn Di sản Văn hóa Thế giới được
+UNESCO công nhận:</pre>
+            <a href="#" class="btn btn-success btn-with-arrow js-footer-map-toggle"><i
+                    class="icon-placeholder"></i><span
+                    class="opened-text">Xem Trên Bản Đồ</span></a>
+            <h5 style="margin-top: 20px;color: chocolate">ĐỊA ĐIỂM</h5>
+            <pre><b>1. Cô Đô Huế</b>                       2 Tiếng</pre>
+            <hr>
+            <pre><b>2. Phố Cổ Hội An </b>                  30 Phút</pre>
+            <hr>
+            <pre><b>1. Thánh địa Mỹ Sơn </b>               90 phút</pre>
+            <hr>
+            <pre><b>1. PĐộng Phong Nha </b>                3 Tiếng</pre>
+            <hr>
+        </div>
+        <div class="col-lg-7 bg-success  p-2 text-dark bg-opacity-50">
+            <div class="row" style="margin-top: 70px">
+                <div class="col-lg-4">
+                    <ul class="abc" style="margin-left: 50px">
+                        <li><a href="#">Giá Công Bố</a></li>
+                        <li><a href="#">Lifestyle Blog</a></li>
+                        <li><a href="">Tuyển Dụng</a></li>
+                        <li><a href="#">Tuyển Dụng</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <h5 style="color: chocolate">LIÊN HỆ</h5>
+                    <pre style="text-align: justify">103 - 105 Vo Nguyen Giap Street, Khue My Ward,
+Ngu Hanh Son District, Danang City, Vietnam
+Tel.: 84-236-3847 333/888 * Fax: 84-236-3847 666
+Email: reservation@furamavietnam.com *
+www.furamavietnam.com
+GDS Codes: Amadeus-GD DADFUR, Galileo/Apollo-GD 16236,
+Sabre-GD 032771,
+Worldspan- GD DADFU</pre>
+                    <img style="width: 32px;height: 32px;float: left"
+                         src="https://furamavietnam.com/wp-content/uploads/2019/06/incon-Facbook-1.png"
+                         alt=""
+                         width="32" height="32">
+                    <img style="width: 40px;height: 32px;float: left"
+                         src="https://furamavietnam.com/wp-content/uploads/2019/06/social-ins.png"
+                         alt="" width="40"
+                         height="32">
+                    <img style="width: 40px;height: 32px;float: left"
+                         src="https://furamavietnam.com/wp-content/uploads/2021/10/social-youtube.png"
+                         alt=""
+                         width="40" height="32">
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div style="margin-top: 100px;margin-left: 90px">
+                <img src="https://furamavietnam.com/wp-content/uploads/2019/02/Ariyana-Tourism-Complex-02-2.png"
+                     alt="Ariyana Tourism Complex" width="500px;" style="height: 100px;width: 600px">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    <div class="container-fluid " style="width: 99%">-->
+<!--        <div class="row">-->
+<!--            <div class="cog-lg-2 ">-->
+<!--            </div>-->
+<!--            <div class="cog-lg-4"></div>-->
+<!--            <div class="cog-lg-4"></div>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+</div>
+<!--<a th:href="@{/}"><i class="fa-solid fa-house-chimney h5 mx-1"></i> Back to HOME</a>-->
+<!--</div>-->
+<script>
+
+</script>
+
+<script src="jquery/jquery-3.5.1.min.js"></script>
+<script src="datatables/js/jquery.dataTables.min.js"></script>
+<script src="datatables/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    function deleteCustomer(id, name) {
+        document.getElementById("idDelete").value = id;
+        document.getElementById("nameDelete").innerText = name;
+        debugger
+    }
+
+    function viewCustomer(name, birthday, gender, idCard, phone, email, address, type) {
+        document.getElementById("name").innerText = name;
+        document.getElementById("birthday").innerText = birthday;
+        if (gender == 0) {
+            document.getElementById("gender").innerText = "Nam";
+        } else if (gender == 1) {
+            document.getElementById("gender").innerText = "Nữ";
+        } else {
+            document.getElementById("gender").innerText = "LGBT";
+        }
+        document.getElementById("idCard").innerText = idCard;
+        document.getElementById("phone").innerText = phone;
+        document.getElementById("email").innerText = email;
+        document.getElementById("address").innerText = address;
+        document.getElementById("type").innerText = type;
+        debugger
+    }
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+</html>
