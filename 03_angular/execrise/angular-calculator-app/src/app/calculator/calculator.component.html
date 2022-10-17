@@ -1,0 +1,18 @@
+<form>
+  <div>nhập...</div>
+  <input type="number" [(ngModel)]="firstNumber" name="calculator1">
+  <br>
+  <div>nhập...</div>
+  <input type="number" [(ngModel)]="secondNumber" name="calculator2">
+  <br><br>
+  <select name="operator" #cal>
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+  </select>
+  <br><br>
+  <button type="submit" (click)="resultSum(cal.value)">submit</button>
+  <br>
+  <bre>Kết quả: <bre>{{result}}</bre></bre>
+</form>
