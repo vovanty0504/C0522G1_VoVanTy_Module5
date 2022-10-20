@@ -1,0 +1,28 @@
+<div [formGroup]="formReactive">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+           formControlName="email">
+  </div>
+  <div class="mb-3 text-danger"
+       *ngIf="formReactive.controls.email.hasError('email') && formReactive.controls.email.dirty">
+    Email phải đúng định dạng!
+  </div>
+
+
+
+    <div class="mb-3">
+      <label for="password " class="form-label">Password</label>
+      <input type="password" class="form-control" id="password " formControlName="password">
+    </div>
+  <div class="mb-3 text-danger"
+       *ngIf="formReactive.controls.password.hasError('minlength') && formReactive.controls.password.dirty">
+    password phải >6 chữ hoặc số
+  </div>
+
+
+
+  <button type="submit" class="btn btn-primary"
+          (click)="registrationForm()" [disabled]="formReactive.invalid">Submit
+  </button>
+</div>

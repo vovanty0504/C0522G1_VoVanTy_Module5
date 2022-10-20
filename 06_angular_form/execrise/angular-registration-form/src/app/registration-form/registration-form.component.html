@@ -1,0 +1,109 @@
+<div [formGroup]="registrationFormGroup">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+           formControlName="email">
+  </div>
+  <div class="mb-3 text-danger"
+       *ngIf="registrationFormGroup.controls.email.hasError('email') && registrationFormGroup.controls.email.dirty">
+    Email phải đúng định dạng!
+  </div>
+
+  <div class="mb-3">
+    <label for="country" class="form-label">Country</label>
+    <select id="country" name="country" formControlName="country">
+      <option [ngValue]="c.id" *ngFor="let c of countryList ">
+        {{c.name}}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-3 text-danger"
+       *ngIf="registrationFormGroup.controls.country.hasError('required') &&
+       registrationFormGroup.controls.country.pristine">
+    Không Được Phép Để Trống!
+  </div>
+
+
+  <div class="mb-3">
+    <label for="birthOfDay" class="form-label">Birth Of Day</label>
+    <input type="date" class="form-control" id="birthOfDay" aria-describedby="emailHelp"
+           formControlName="birthOfDay">
+  </div>
+
+  <div class="mb-3 text-danger"
+       *ngIf="registrationFormGroup.controls.birthOfDay.hasError('invalid18') &&
+       registrationFormGroup.controls.birthOfDay.dirty">
+    Tuổi Phải >= 18
+  </div>
+
+  <div>
+    <label class="form-check-label">
+      Giới Tính:
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input formControlName="gender" class="form-check-input" type="radio" name="gender" id="gender" value="Name">
+    <label class="form-check-label" for="gender">
+      Nam
+    </label>
+  </div>
+  <div class="form-check">
+    <input formControlName="gender" class="form-check-input" type="radio" name="gender" id="gender1" checked value="Nữ">
+    <label class="form-check-label" for="gender1">
+      Nữ
+    </label>
+  </div>
+
+  <div class="mb-3 text-danger"
+       *ngIf="registrationFormGroup.controls.gender.hasError('required') &&
+       registrationFormGroup.controls.gender.pristine">
+    Không Được Phép Để Trống!
+  </div>
+
+  <div class="mb-3">
+    <label for="phoneNumber" class="form-label">Phone Number</label>
+    <input type="text" class="form-control" id="phoneNumber" aria-describedby="emailHelp"
+           formControlName="phoneNumber">
+  </div>
+  <div class="mb-3 text-danger"
+       *ngIf="registrationFormGroup.controls.phoneNumber.hasError('pattern') &&
+       registrationFormGroup.controls.phoneNumber.dirty">
+    bắt đầu với +84, và theo sau là 9 đến 10 chữ số
+  </div>
+
+  <div formGroupName="pwGroup">
+    <div class="mb-3">
+      <label for="password " class="form-label">Password</label>
+      <input type="password" class="form-control" id="password " formControlName="firstPassWord">
+    </div>
+    <div class="mb-3 text-danger"
+         *ngIf="registrationFormGroup.get('pwGroup').hasError('minlength','firstPassWord')
+           && registrationFormGroup.get('pwGroup').get('firstPassWord').touched">
+      Mật Khẩu Phảu >=6!
+    </div>
+    <div class="mb-3 text-danger"
+         *ngIf="registrationFormGroup.get('pwGroup').hasError('required','firstPassWord')
+           && registrationFormGroup.get('pwGroup').get('firstPassWord').touched">
+      Không được để Trống!
+    </div>
+
+
+    <div class="mb-3">
+      <label for="confirmPassword " class="form-label">Password</label>
+      <input type="password" class="form-control" id="confirmPassword " formControlName="confirmPassword">
+    </div>
+
+
+    <div class="mb-3 text-danger"
+         *ngIf="registrationFormGroup.controls.pwGroup.hasError('notSame')
+           && registrationFormGroup.controls.pwGroup.dirty">
+      pass word phải trùng
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary"
+          (click)="registrationForm()" [disabled]="registrationFormGroup.invalid">Submit
+  </button>
+</div>
