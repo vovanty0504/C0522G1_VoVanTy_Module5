@@ -3,91 +3,130 @@
 
   <div class="d-flex justify-content-center">
 
-    <form class="w-50 border border-2 border-success p-3 rounded formCSS" action="#"
-          method="POST" novalidate="novalidate">
-      <input type="hidden" readonly/>
-
-      <div class="form-group">
-        <label for="name" class="h6">Tên khách Hàng:</label>
-        <div class="input-group">
-          <input type="text" id="name" class="form-control" placeholder="Nhập Tên Khách Hàng.."
-                 value="Võ Văn Tý"/>
-          <span class="input-group-text"><i class="fa-solid fa-person-circle-question"></i></span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="dateOfBirth" class="h6">Ngày Sinh:</label>
-        <div class="input-group">
-          <input type="text" id="dateOfBirth" class="form-control" placeholder="Nhập Tên Khách Hàng.."
-                 value="05/04/2001"/>
-          <span class="input-group-text"><i class="fa-solid fa-person-circle-question"></i></span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="gender" class="h6">Giới Tính:</label>
-        <div class="input-group">
-          <input type="text" id="gender" class="form-control" placeholder="Nhập Tên Khách Hàng.."
-                 value="Nam"/>
-          <span class="input-group-text"><i class="fa-solid fa-person-circle-question"></i></span>
-        </div>
-      </div>
-
+    <div class="w-50 border border-info p-3"
+         [formGroup]="formEditCustomer">
 
       <div class="mt-3 form-group">
-        <label for="idCard" class="h6">Số CMND/CCCD:</label>
-        <div class="input-group">
-          <input type="text" id="idCard" class="form-control" placeholder="Nhập Số CMND/CCCD.."
-                 value="322121454"/>
-          <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
-        </div>
+        <label for="id" class="h6">Nhập Id:</label>
+        <input type="number" id="id" class="form-control" placeholder="Nhập Id: " name="id"
+               formControlName="customerId">
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerId.hasError('required')
+            && formEditCustomer.controls.customerId.dirty">
+        Không Được Để Trống!
+      </div>
+
+      <div class="mt-3 form-group">
+        <label for="name" class="h6">Tên Khách Hàng:</label>
+        <input type="text" id="name" class="form-control" placeholder="Nhập Tên: " name="name"
+               formControlName="customerName">
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerName.hasError('pattern')
+            && formEditCustomer.controls.customerName.dirty">
+        Tên khách hàng không được chứa số, và các kí tự đầu tiên của mỗi từ phải viết hoa!
+      </div>
+
+      <div class="mt-3 form-group">
+        <label for="dateOfBirth" class="h6">Ngày Sinh:</label>
+        <input type="date" id="dateOfBirth" class="form-control"  name="dateOfBirth"
+               formControlName="customerDateOfBirth">
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerDateOfBirth.hasError('required')
+            && formEditCustomer.controls.customerDateOfBirth.dirty">
+        Không Được Để Trống!
+      </div>
+
+      <div class="mt-3 form-group">
+        <label for="idCard" class="h6">CCND/CMND:</label>
+        <input type="number" id="idCard" class="form-control" placeholder="Nhập CCMD/CMND" name="idCard"
+               formControlName="customerIdCard"  >
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerIdCard.hasError('pattern')
+            && formEditCustomer.controls.customerIdCard.dirty">
+        Số CMND/CCCD phải đúng định dạng XXXXXXXXX hoặc XXXXXXXXXXXX (X là số 0-9).
       </div>
 
       <div class="mt-3 form-group">
         <label for="phone" class="h6">Số Điện Thoại:</label>
-        <div class="input-group">
-          <input type="text" id="phone" class="form-control" placeholder="Nhập SĐT.."
-                 value="090900909"/>
-          <span class="input-group-text"><i class="fa-solid fa-square-phone"></i></span>
-        </div>
+        <input type="text" id="phone" class="form-control" placeholder="Nhập Số Điện Thoại" name="phone"
+               formControlName="customerPhoneNumber"   >
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerPhoneNumber.hasError('pattern')
+            && formEditCustomer.controls.customerPhoneNumber.dirty">
+        Số điện thoại phải đúng định dạng 090xxxxxxx hoặc 091xxxxxxx hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx.
       </div>
 
       <div class="mt-3 form-group">
         <label for="email" class="h6">Email:</label>
-        <div class="input-group">
-          <input type="text" id="email" class="form-control" placeholder="Nhập Email.."
-                 value="vovanty0504@gmail.com"/>
-          <span class="input-group-text"><i class="fa-solid fa-envelope-circle-check"></i></span>
-        </div>
+        <input type="text" id="email" class="form-control" placeholder="Nhập Email" name="email"
+               formControlName="customerEmail"    >
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerEmail.hasError('email')
+            && formEditCustomer.controls.customerEmail.dirty">
+        email Phải Đúng Định Dạng!
       </div>
 
       <div class="mt-3 form-group">
         <label for="address" class="h6">Địa Chỉ:</label>
-        <div class="input-group">
-          <input type="text" id="address" class="form-control" placeholder="Nhập Địa Chỉ.."
-                 value="31 Lê đình kỵ"/>
-          <span class="input-group-text"><i class="fa-solid fa-map-location-dot"></i></span>
-        </div>
+        <input type="text" id="address" class="form-control" placeholder="Nhập Địa Chỉ" name="address"
+               formControlName="customerAddress"   >
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerAddress.hasError('required')
+            && formEditCustomer.controls.customerAddress.dirty">
+        Không Được Để Trống
       </div>
 
       <div class="mt-3 form-group">
-        <label class="h6" for="customerType">Loại Khách:</label>
+        <label for="gender" class="h6">Giới Tính:</label>
+        <input type="text" id="gender" class="form-control" placeholder="Nhập Địa Chỉ" name="address"
+               formControlName="customerGender"   >
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerGender.hasError('required')
+            && formEditCustomer.controls.customerGender.dirty">
+        Không Được Để Trống.
+      </div>
+
+      <div class="mt-3 form-group">
+        <label class="h6" for="customerType">Loại Khách Hàng:</label>
         <div class="input-group">
-          <select id="customerType" class="form-select">
-            <option>Vip</option>
-            <option>Cùi Mía</option>
+          <select id="customerType" class="form-select" formControlName="customerType" >
+            <option *ngFor="let c of customerTypeList" [ngValue]="c.id">
+              {{c.name}}
+            </option>
           </select>
           <span class="input-group-text"><i class="fa-solid fa-ranking-star"></i></span>
         </div>
       </div>
 
-      <div class="mt-3 text-center">
-        <button class="btn btn-info btn-outline-success btn-sm border border-2 border-success text-dark">
-          -- Lưu <i class="fa-solid fa-floppy-disk"></i> --
-        </button>
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerType.hasError('required')
+            && formEditCustomer.controls.customerType.dirty">
+        Không Được Để Trống.
       </div>
-    </form>
+
+      <div class="mt-3 text-center">
+        <button class="btn btn-info btn-sm" (click)="updateCustomer()" [disabled]="formEditCustomer.invalid">Lưu</button>
+      </div>
+    </div>
   </div>
+
+
 </div>
+
 

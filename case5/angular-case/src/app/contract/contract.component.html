@@ -9,20 +9,20 @@
         <span class="text-light"> Thêm mới hợp đồng</span>
       </button>
 
-<!--                  <form class="d-flex my-2" role="search" th:action="@{/contract/list}">-->
-<!--                      <input class="form-control me-2" type="text" placeholder="Input search Name" aria-label="Search"-->
-<!--                             name="nameSearch">-->
+      <!--                  <form class="d-flex my-2" role="search" th:action="@{/contract/list}">-->
+      <!--                      <input class="form-control me-2" type="text" placeholder="Input search Name" aria-label="Search"-->
+      <!--                             name="nameSearch">-->
 
-<!--                      <input class="form-control me-2" type="text" placeholder="Input search address" aria-label="Search"-->
-<!--                             name="addressSearch">-->
+      <!--                      <input class="form-control me-2" type="text" placeholder="Input search address" aria-label="Search"-->
+      <!--                             name="addressSearch">-->
 
 
-<!--                      <input class="form-control me-2" type="text" placeholder="Input search phone" aria-label="Search"-->
-<!--                             name="phoneSearch">-->
+      <!--                      <input class="form-control me-2" type="text" placeholder="Input search phone" aria-label="Search"-->
+      <!--                             name="phoneSearch">-->
 
-<!--                      <button class="btn btn-outline-success" type="submit" name="action" value="search">-->
-<!--                          <i class="fa-solid fa-magnifying-glass"></i></button>-->
-<!--                  </form>-->
+      <!--                      <button class="btn btn-outline-success" type="submit" name="action" value="search">-->
+      <!--                          <i class="fa-solid fa-magnifying-glass"></i></button>-->
+      <!--                  </form>-->
     </div>
   </nav>
 
@@ -30,7 +30,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <form class="border border-2 border-success p-3 rounded formCSS"
-            method="POST">
+              method="POST">
           <div class="modal-header">
             <h3 class="modal-title fw-bold" id="exampleModalLabel3">THÊM MỚI HỢP ĐỒNG</h3>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -39,7 +39,7 @@
           <div class="mt-3 form-group">
             <label class="h6" for="facility">Tên Dịch Vụ:</label>
             <div class="input-group">
-              <select id="facility" class="form-select" >
+              <select id="facility" class="form-select">
                 <option>Villa</option>
                 <option>House</option>
                 <option>Room</option>
@@ -63,9 +63,9 @@
           <div class="form-group">
             <label class="h6" for="customer">Tên Khách Hàng:</label>
             <div class="input-group">
-              <select id="customer" class="form-select" >
-               <option>Đại Lợi</option>
-               <option>Thủy Điên</option>
+              <select id="customer" class="form-select">
+                <option>Đại Lợi</option>
+                <option>Thủy Điên</option>
               </select>
               <span class="input-group-text"><i class="fa-solid fa-person-circle-question"></i></span>
             </div>
@@ -113,43 +113,19 @@
       <th>Ngày Bắt Đầu</th>
       <th>Ngày Kết Thúc</th>
       <th>Tiền Cọc</th>
-      <th>Tổng Tiền</th>
       <th class="text-center">Các Dịch Vụ Đi Kèm</th>
 
     </tr>
     </thead>
     <tbody>
-    <tr >
-      <td >1</td>
-      <td >Villar S05</td>
-      <td >Trung Thuyên</td>
-      <td >Đại Lợi</td>
-      <td >10/10/2022</td>
-      <td >12/10/2022</td>
-      <td >10000</td>
-      <td >10000000</td>
-      <td class="text-center">
-        <button
-                class="btn btn-primary btn-outline-secondary btn-sm" data-bs-toggle="modal"
-                data-bs-target="#addContractDetail">
-          <span class="fa-solid fa-plus text-light h6 m-auto"></span>
-        </button>
-
-        <button class="btn btn-primary btn-outline-secondary btn-sm ms-3 px-3"
-                 data-bs-toggle="modal"
-                data-bs-target="#showAttachDetail">
-          <span class="text-light m-auto">Danh sách dịch vụ đi kèm</span>
-        </button>
-      </td>
-    </tr><tr >
-      <td >2</td>
-      <td >Villar S05</td>
-      <td >Trung Thuyên</td>
-      <td >Đại Lợi</td>
-      <td >10/10/2022</td>
-      <td >12/10/2022</td>
-      <td >10000</td>
-      <td >10000000</td>
+    <tr *ngFor="let contract of contractList; index as i">
+      <td>{{i + 1}}</td>
+      <td>{{contract.facility}}</td>
+      <td>{{contract.employee}}</td>
+      <td>{{contract.customer}}</td>
+      <td>{{contract.contractStartDate}}</td>
+      <td>{{contract.contractEndDate}}</td>
+      <td>{{contract.contractDeposit}}</td>
       <td class="text-center">
         <button
           class="btn btn-primary btn-outline-secondary btn-sm" data-bs-toggle="modal"
@@ -163,76 +139,6 @@
           <span class="text-light m-auto">Danh sách dịch vụ đi kèm</span>
         </button>
       </td>
-    </tr>
-    <tr >
-      <td >3</td>
-      <td >Villar S05</td>
-      <td >Trung Thuyên</td>
-      <td >Đại Lợi</td>
-      <td >10/10/2022</td>
-      <td >12/10/2022</td>
-      <td >10000</td>
-      <td >10000000</td>
-      <td class="text-center">
-        <button
-          class="btn btn-primary btn-outline-secondary btn-sm" data-bs-toggle="modal"
-          data-bs-target="#addContractDetail">
-          <span class="fa-solid fa-plus text-light h6 m-auto"></span>
-        </button>
-
-        <button class="btn btn-primary btn-outline-secondary btn-sm ms-3 px-3"
-                data-bs-toggle="modal"
-                data-bs-target="#showAttachDetail">
-          <span class="text-light m-auto">Danh sách dịch vụ đi kèm</span>
-        </button>
-      </td>
-    </tr>
-    <tr >
-      <td >4</td>
-      <td >Villar S05</td>
-      <td >Trung Thuyên</td>
-      <td >Đại Lợi</td>
-      <td >10/10/2022</td>
-      <td >12/10/2022</td>
-      <td >10000</td>
-      <td >10000000</td>
-      <td class="text-center">
-        <button
-          class="btn btn-primary btn-outline-secondary btn-sm" data-bs-toggle="modal"
-          data-bs-target="#addContractDetail">
-          <span class="fa-solid fa-plus text-light h6 m-auto"></span>
-        </button>
-
-        <button class="btn btn-primary btn-outline-secondary btn-sm ms-3 px-3"
-                data-bs-toggle="modal"
-                data-bs-target="#showAttachDetail">
-          <span class="text-light m-auto">Danh sách dịch vụ đi kèm</span>
-        </button>
-      </td>
-    </tr>
-    <tr >
-      <td >5</td>
-      <td >Villar S05</td>
-      <td >Trung Thuyên</td>
-      <td >Đại Lợi</td>
-      <td >10/10/2022</td>
-      <td >12/10/2022</td>
-      <td >10000</td>
-      <td >10000000</td>
-      <td class="text-center">
-        <button
-          class="btn btn-primary btn-outline-secondary btn-sm" data-bs-toggle="modal"
-          data-bs-target="#addContractDetail">
-          <span class="fa-solid fa-plus text-light h6 m-auto"></span>
-        </button>
-
-        <button class="btn btn-primary btn-outline-secondary btn-sm ms-3 px-3"
-                data-bs-toggle="modal"
-                data-bs-target="#showAttachDetail">
-          <span class="text-light m-auto">Danh sách dịch vụ đi kèm</span>
-        </button>
-      </td>
-    </tr>
     </tbody>
   </table>
 
@@ -257,9 +163,9 @@
                 <label class="h6" for="attachFacility">Tên Dịch Vụ Đi Kèm:</label>
                 <div class="input-group">
                   <select id="attachFacility" class="form-select"
-                         >
-                 <option>Karaoke</option>
-                 <option>Hồ Bơi</option>
+                  >
+                    <option>Karaoke</option>
+                    <option>Hồ Bơi</option>
                   </select>
                   <span class="input-group-text"><i class="fa-solid fa-file-signature"></i></span>
                 </div>
@@ -269,7 +175,7 @@
                 <label for="quantity" class="h6">Số Lượng:</label>
                 <div class="input-group">
                   <input type="number" id="quantity" class="form-control"
-                         placeholder="Nhập số lượng..."  required
+                         placeholder="Nhập số lượng..." required
                          pattern="^[1-9]\d*$"
                          title="Số lượng phải là số nguyên dương."/>
                   <span class="input-group-text"></span>

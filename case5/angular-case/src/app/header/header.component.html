@@ -1,12 +1,12 @@
-<header  class="sticky-top">
+<header class="sticky-top">
   <div class="container-fluid bg-black-500 d-flex myCSS" style="height: 100px;background-color: cornflowerblue"
-      >
+  >
     <img class="h-100 p-4" src="https://www.furama.com/images/LOGOFurama_4C_Normal.png" alt="">
     <img class="ms-5 ps-5"
          src="https://furamavietnam.com/wp-content/uploads/2019/02/Ariyana-Tourism-Complex-02-2.png"
          alt="">
 
-    <div class="container-fluid text-end my-4 me-4" >
+    <div class="container-fluid text-end my-4 me-4">
             <span class="badge text-bg-warning mt-3" style="font-size: 15px"> Võ Văn Tý
             </span>
     </div>
@@ -17,7 +17,7 @@
     <nav class="navbar navbar-expand-lg" style="background-color: #b6effb">
 
       <div class="container-fluid mx-5">
-        <a class="navbar-brand" href="#">Trang Chủ</a>
+        <a class="navbar-brand" routerLink="">Trang Chủ</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +29,7 @@
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                  aria-expanded="false">Loại Phòng</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="../facility/facility.html" >Danh Sách Phòng</a></li>
+                <li><a class="dropdown-item" routerLink="/facility">Danh Sách Phòng</a></li>
 
 
               </ul>
@@ -39,8 +39,8 @@
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                  aria-expanded="false">Khách Hàng</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="../customer/list.html">Danh Sách Khách Hàng</a></li>
-                <li><a class="dropdown-item" href="../customer/create.html">Thêm Mới Khách Hàng</a></li>
+                <li><a class="dropdown-item" routerLink="/customer/list">Danh Sách Khách Hàng</a></li>
+                <li><a class="dropdown-item" routerLink="/customer/create">Thêm Mới Khách Hàng</a></li>
               </ul>
             </li>
 

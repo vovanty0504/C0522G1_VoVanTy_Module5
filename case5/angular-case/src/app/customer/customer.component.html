@@ -1,4 +1,4 @@
-<h1  class="text-center" style="margin-top: 50px">Danh Sách Khách Hàng</h1>
+<h1 class="text-center" style="margin-top: 50px">Danh Sách Khách Hàng</h1>
 <nav class="navbar navbar-expand-lg pb-0 mb-0">
   <div class="container-fluid">
     <a href="create.html">
@@ -46,18 +46,18 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>1</td>
-    <td>Võ Văn Tý</td>
-    <td>05/04/2001</td>
-    <td>Nam</td>
-    <td>123456789</td>
-    <td>090900909</td>
-    <td>vovanty0504@gmail.com</td>
-    <td>31 lê đình kỵ</td>
-    <td>Vip</td>
+  <tr *ngFor="let customer of customerList; index as i">
+    <td>{{i + 1}}</td>
+    <td>{{customer.customerName}}</td>
+    <td>{{customer.customerDateOfBirth}}</td>
+    <td>{{customer.customerGender}}</td>
+    <td>{{customer.customerIdCard}}</td>
+    <td>{{customer.customerPhoneNumber}}</td>
+    <td>{{customer.customerEmail}}</td>
+    <td>{{customer.customerAddress}}</td>
+    <td>{{customer.customerType}}</td>
     <td class="text-center">
-      <a href="edit.html">
+      <a routerLink="/customer/edit/{{customer.customerId}}">
         <button class="btn btn-success btn-outline-secondary btn-sm">
           <span class="fa-solid fa-user-pen text-light h6 m-auto px-2"></span>
         </button>
@@ -70,109 +70,6 @@
         <span class="fa-solid fa-person-circle-minus text-light h6 m-auto px-2"></span>
       </button>
     </td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>Võ Văn Tý</td>
-    <td>05/04/2001</td>
-    <td>Nam</td>
-    <td>123456789</td>
-    <td>090900909</td>
-    <td>vovanty0504@gmail.com</td>
-    <td>31 lê đình kỵ</td>
-    <td>Vip</td>
-    <td class="text-center">
-      <a href="edit.html">
-        <button class="btn btn-success btn-outline-secondary btn-sm">
-          <span class="fa-solid fa-user-pen text-light h6 m-auto px-2"></span>
-        </button>
-      </a>
-    </td>
-    <td class="text-center">
-      <button
-        class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
-        data-bs-target="#deleteCustomer">
-        <span class="fa-solid fa-person-circle-minus text-light h6 m-auto px-2"></span>
-      </button>
-    </td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>Võ Văn Tý</td>
-    <td>05/04/2001</td>
-    <td>Nam</td>
-    <td>123456789</td>
-    <td>090900909</td>
-    <td>vovanty0504@gmail.com</td>
-    <td>31 lê đình kỵ</td>
-    <td>Vip</td>
-    <td class="text-center">
-      <a href="edit.html">
-        <button class="btn btn-success btn-outline-secondary btn-sm">
-          <span class="fa-solid fa-user-pen text-light h6 m-auto px-2"></span>
-        </button>
-      </a>
-    </td>
-    <td class="text-center">
-      <button
-        class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
-        data-bs-target="#deleteCustomer">
-        <span class="fa-solid fa-person-circle-minus text-light h6 m-auto px-2"></span>
-      </button>
-    </td>
-
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>Võ Văn Tý</td>
-    <td>05/04/2001</td>
-    <td>Nam</td>
-    <td>123456789</td>
-    <td>090900909</td>
-    <td>vovanty0504@gmail.com</td>
-    <td>31 lê đình kỵ</td>
-    <td>Vip</td>
-    <td class="text-center">
-      <a href="edit.html">
-        <button class="btn btn-success btn-outline-secondary btn-sm">
-          <span class="fa-solid fa-user-pen text-light h6 m-auto px-2"></span>
-        </button>
-      </a>
-    </td>
-    <td class="text-center">
-      <button
-        class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
-        data-bs-target="#deleteCustomer">
-        <span class="fa-solid fa-person-circle-minus text-light h6 m-auto px-2"></span>
-      </button>
-    </td>
-
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>Võ Văn Tý</td>
-    <td>05/04/2001</td>
-    <td>Nam</td>
-    <td>123456789</td>
-    <td>090900909</td>
-    <td>vovanty0504@gmail.com</td>
-    <td>31 lê đình kỵ</td>
-    <td>Vip</td>
-    <td class="text-center">
-      <a href="edit.html">
-        <button class="btn btn-success btn-outline-secondary btn-sm">
-          <span class="fa-solid fa-user-pen text-light h6 m-auto px-2"></span>
-        </button>
-      </a>
-    </td>
-    <td class="text-center">
-      <button
-        class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
-        data-bs-target="#deleteCustomer">
-        <span class="fa-solid fa-person-circle-minus text-light h6 m-auto px-2"></span>
-      </button>
-    </td>
-
   </tr>
   </tbody>
 </table>
