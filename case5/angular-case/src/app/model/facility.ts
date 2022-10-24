@@ -2,12 +2,14 @@ export interface Facility {
   facilityId?: number;
   facilityName?: string;
   facilityArea?: number;
-  facilityCost?: number;
-  facilityMaxPeople?: number;
-  facilityStandardRoom?: string;
-  facilityDescriptionOtherConvenience?: string;
-  facilityPoolArea: number;
-  facilityNumberOfFloors?: number;
+  rentCost?: number;
+  maxPeople?: number;
+  standardRoom?: string;
+  descriptionOtherConvenience?: string;
+  poolArea?: number;
+  numberOfFloors?: number;
   facilityFree?: string;
-  isDelete?: boolean;
+  rentType?: string;
+  facilityType?: string;
+  facilityImage?: string;
 }

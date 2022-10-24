@@ -1,120 +1,98 @@
-<div class="mx-5 px-5 pt-3">
-  <h1 class="text-center fw-bold text-dark">Thêm Mới Dịch Vụ</h1>
+<div class="mx-5 px-5 pt-3 pb-5">
+  <h2 class="text-center fw-bold text-light">THÊM MỚI HỢP ĐỒNG</h2>
 
+  <p class="text-center">
+    <a routerLink="/contract">
+      <i class="fa-solid fa-backward"></i> Quay lại trang danh sách hợp đồng</a>
+  </p>
 
   <div class="d-flex justify-content-center">
-    <form class="w-50 border border-2 border-success p-3 rounded formCSS" action="#"
-          method="POST">
+    <form class="w-50 border border-2 border-success p-3 rounded formCSS"
+          [formGroup]="contractFormGroup" (ngSubmit)="submit()">
       <div class="form-group">
-        <label class="h6" for="facilityType">Loại Dịch Vụ:</label>
+        <label for="id" class="h6">Mã hợp đồng:</label>
         <div class="input-group">
-          <select id="facilityType" class="form-select"
-                  onchange="changeForm(this)">
-            <option value="" class="text-danger">Chọn Loại Dịch Vụ..</option>
-            <option>Villa</option>
-            <option>Room</option>
-            <option>House</option>
-          </select>
-          <span class="input-group-text"><i class="fa-solid fa-house-user"></i></span>
+          <input type="number" id="id" class="form-control" placeholder="Nhập mã hợp đồng.."
+                 formControlName="contractId" [(ngModel)]="idAuto" readonly style="background-color: #b6bac2"/>
+          <span class="input-group-text">#</span>
         </div>
       </div>
 
       <div class="mt-3 form-group">
-        <label for="name" class="h6">Tên Dịch Vụ:</label>
+        <label class="h6" for="facility">Tên dịch vụ:</label>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="contractFormGroup.controls.facility.hasError('required') &&
+                      contractFormGroup.controls.facility.touched">
+          Vui lòng chọn dịch vụ!
+        </div>
         <div class="input-group">
-          <input type="text" id="name" class="form-control" placeholder="Nhập tên dịch vụ.."
-                 />
+          <select id="facility" class="form-select" formControlName="facility">
+            <option *ngFor="let item of facilityList" [ngValue]="item">{{item.facilityName}}</option>
+          </select>
           <span class="input-group-text"><i class="fa-solid fa-file-signature"></i></span>
         </div>
       </div>
 
       <div class="mt-3 form-group">
-        <label for="area" class="h6">Diện Tích Sử Dụng (m<sup>2</sup>):</label>
-        <div class="input-group">
-          <input type="number" id="area" class="form-control" placeholder="Nhập diện tích sử dụng.."
-                 />
-          <span class="input-group-text"><i class="fa-solid fa-chart-area"></i></span>
+        <label class="h6" for="customer">Tên khách hàng:</label>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="contractFormGroup.controls.customer.hasError('required') &&
+                      contractFormGroup.controls.customer.touched">
+          Vui lòng chọn khách hàng!
         </div>
-      </div>
-
-      <div class="mt-3 form-group">
-        <label for="cost" class="h6">Chi Phí Thuê (VNĐ):</label>
         <div class="input-group">
-          <input type="number" id="cost" class="form-control" placeholder="Nhập chi phí thuê.."
-                 />
-          <span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
-        </div>
-      </div>
-
-      <div class="mt-3 form-group">
-        <label for="maxPeople" class="h6">Số Người Tối Đa:</label>
-        <div class="input-group">
-          <input type="number" id="maxPeople" class="form-control" placeholder="Nhập số người tối đa.."
-                 />
-          <span class="input-group-text"><i class="fa-solid fa-person"></i></span>
-        </div>
-      </div>
-
-      <div class="mt-3 form-group" id="standardRoomForm" style="display: none">
-        <label for="standardRoom" class="h6">Tiêu Chuẩn Phòng:</label>
-        <div class="input-group">
-          <input type="text" id="standardRoom" class="form-control" placeholder="Nhập tiêu chuẩn phòng.."
-                 />
-          <span class="input-group-text"><i class="fa-solid fa-star"></i></span>
-        </div>
-      </div>
-
-      <div class="mt-3 form-group" id="descriptionForm" style="display: none">
-        <label for="description" class="h6">Mô Tả Tiện Nghi Khác:</label>
-
-        <div class="input-group">
-          <input type="text" id="description" class="form-control" placeholder="Nhập mô tả tiện nghi khác.."
-                 />
-          <span class="input-group-text"><i class="fa-solid fa-book"></i></span>
-        </div>
-      </div>
-
-      <div class="mt-3 form-group" id="poolAreaForm" style="display: none">
-        <label for="poolArea" class="h6">Diện Tích Hồ Bơi (m<sup>2</sup>):</label>
-        <div class="input-group">
-          <input type="number" id="poolArea" class="form-control" placeholder="Nhập diện tích hồ bơi.."
-                 />
-          <span class="input-group-text"><i class="fa-solid fa-person-swimming"></i></span>
-        </div>
-      </div>
-
-      <div class="mt-3 form-group" id="numberOfFloorsForm" style="display: none">
-        <label for="numberOfFloors" class="h6">Số Tầng:</label>
-        <div class="input-group">
-          <input type="number" id="numberOfFloors" class="form-control" placeholder="Nhập số tầng.."
-                 />
-          <span class="input-group-text"><i class="fa-solid fa-building"></i></span>
-        </div>
-      </div>
-
-      <div class="mt-3 form-group" id="facilityFreeForm" style="display: none">
-        <label for="facilityFree" class="h6">Dịch Vụ Miễn Phí Đi Kèm:</label>
-        <div class="input-group">
-          <input type="text" id="facilityFree" class="form-control"
-                 placeholder="Nhập dịch vụ miễn phí đi kèm.."/>
-          <span class="input-group-text"><i class="fa-solid fa-gift"></i></span>
-        </div>
-      </div>
-
-      <div class="mt-3 form-group">
-        <label class="h6" for="rentType">Kiểu Thuê:</label>
-        <div class="input-group">
-          <select id="rentType" class="form-select" >
-            <option>Giờ</option>
-            <option>Tháng</option>
-            <option>Năm</option>
+          <select id="customer" class="form-select" formControlName="customer">
+            <option *ngFor="let item of customerList" [ngValue]="item">{{item.customerName}}</option>
           </select>
-          <span class="input-group-text"><i class="fa-solid fa-business-time"></i></span>
+          <span class="input-group-text"><i class="fa-solid fa-person-circle-question"></i></span>
+        </div>
+      </div>
+
+      <div formGroupName="dateFormGroup">
+        <div class="mt-3 form-group">
+          <label for="startDate" class="h6">Ngày bắt đầu:</label>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="contractFormGroup.get('dateFormGroup').hasError('invalidStartDate', 'startDate')
+               && contractFormGroup.get('dateFormGroup').get('startDate').touched">
+            Cái gì thuộc về quá khứ hãy cho nó qua đi!
+          </div>
+          <input type="date" id="startDate" class="form-control" formControlName="startDate"
+                 [min]="curDate"/>
+        </div>
+
+        <div class="mt-3 form-group">
+          <label for="endDate" class="h6">Ngày kết thúc:</label>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="contractFormGroup.controls.dateFormGroup.hasError('invalidEndDate')
+           && contractFormGroup.controls.dateFormGroup.dirty">
+            Ngày kết thúc hợp đồng không nhỏ hơn ngày làm hợp đồng!
+          </div>
+          <input type="date" id="endDate" class="form-control" formControlName="endDate" [min]="curDate"/>
+        </div>
+      </div>
+
+      <div class="mt-3 form-group">
+        <label for="deposit" class="h6">Tiền đặt cọc (VNĐ):</label>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="contractFormGroup.controls.deposit.hasError('required') &&
+                      contractFormGroup.controls.deposit.touched">
+          Tiền đặt cọc không được để trống!
+        </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="contractFormGroup.controls.deposit.hasError('pattern') &&
+                      contractFormGroup.controls.deposit.touched">
+          Tiền đặt cọc phải là số nguyên không nhỏ hơn 0!
+        </div>
+        <div class="input-group">
+          <input type="number" id="deposit" class="form-control" placeholder="Nhập tiền đặt cọc..."
+                 formControlName="deposit"/>
+          <span class="input-group-text"><i class="fa-solid fa-money-bill-wave"></i></span>
         </div>
       </div>
 
       <div class="mt-3 text-center">
-        <button class="btn btn-info btn-outline-success btn-sm border border-2 border-success text-dark">
+        <button class="btn btn-info btn-outline-success btn-sm border border-2 border-success text-dark"
+                [disabled]="contractFormGroup.invalid">
           -- Lưu <i class="fa-solid fa-floppy-disk"></i> --
         </button>
       </div>

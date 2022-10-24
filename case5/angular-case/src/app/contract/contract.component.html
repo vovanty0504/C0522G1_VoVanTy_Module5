@@ -121,11 +121,11 @@
     <tr *ngFor="let contract of contractList; index as i">
       <td>{{i + 1}}</td>
       <td>{{contract.facility}}</td>
-      <td>{{contract.employee}}</td>
       <td>{{contract.customer}}</td>
-      <td>{{contract.contractStartDate}}</td>
-      <td>{{contract.contractEndDate}}</td>
-      <td>{{contract.contractDeposit}}</td>
+      <td>{{contract.customer}}</td>
+      <td>{{contract.startDate}}</td>
+      <td>{{contract.endDate}}</td>
+      <td>{{contract.deposit}}</td>
       <td class="text-center">
         <button
           class="btn btn-primary btn-outline-secondary btn-sm" data-bs-toggle="modal"
