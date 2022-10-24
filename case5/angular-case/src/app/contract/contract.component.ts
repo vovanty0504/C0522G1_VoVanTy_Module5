@@ -11,6 +11,7 @@ export class ContractComponent implements OnInit {
 
   contractList: Contract[] = [];
 
+
   constructor(private contractService: ContractService) {
   }
 

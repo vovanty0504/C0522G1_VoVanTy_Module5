@@ -1,0 +1,52 @@
+{
+  "product": [
+    {
+      "id": 2,
+      "name": "Siêu Nhân Gao",
+      "price": 123123,
+      "description": "Hay",
+      "category": {
+        "id": 2,
+        "name": "Tình Cảm"
+      }
+    },
+    {
+      "id": 4,
+      "name": "abc",
+      "price": 123123,
+      "description": "123213",
+      "category": {
+        "id": 2,
+        "name": "Siêu Nhân"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Phim Láo Cá",
+      "price": 10000,
+      "description": "Phim Cùi",
+      "category": {
+        "name": "Abc",
+        "id": 4
+      }
+    }
+  ],
+  "category": [
+    {
+      "id": 1,
+      "name": "Ngôn Tình"
+    },
+    {
+      "id": 2,
+      "name": "Siêu Nhân"
+    },
+    {
+      "id": 3,
+      "name": "Hài"
+    },
+    {
+      "name": "Abc",
+      "id": 4
+    }
+  ]
+}

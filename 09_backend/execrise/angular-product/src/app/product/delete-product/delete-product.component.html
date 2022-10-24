@@ -1,0 +1,47 @@
+<br><br>
+<h1>Delete Product</h1>
+<div [formGroup]="productForm">
+  <table>
+    <tr>
+      <td>
+        <label for="name">Name</label>
+      </td>
+      <td>
+        <input formControlName="name" name="name" id="name" disabled><br>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="price">price</label>
+
+      </td>
+      <td>
+        <input formControlName="price" name="price" id="price" disabled><br>
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="description">description</label>
+      </td>
+      <td>
+        <input formControlName="description" name="description" id="description" disabled>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="category">category</label>
+      </td>
+      <td>
+        <input formControlName="category" name="category" id="category" disabled>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button type="submit" (click)="deleteProduct()">Delete</button>
+      </td>
+    </tr>
+  </table>
+
+
+</div>
