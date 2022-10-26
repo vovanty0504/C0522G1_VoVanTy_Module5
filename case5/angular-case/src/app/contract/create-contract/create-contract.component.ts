@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
-import {FacilityService} from "../service/facility.service";
-import {CustomerService} from "../service/customer.service";
-import {ContractService} from "../service/contract.service";
+import {FacilityService} from "../../service/facility.service";
+import {CustomerService} from "../../customer/service/customer.service";
+import {ContractService} from "../../service/contract.service";
 
 @Component({
   selector: 'app-create-contract',
@@ -21,12 +21,6 @@ export class CreateContractComponent implements OnInit {
     facility: new FormControl('', Validators.required)
   });
 
-  customerList = this.customerService.getAll();
-  facilityList = this.facilityService.getAll().filter(item => {
-    return (item.facilityType === 'Villa' || item.facilityType === 'House');
-  });
-
-  idAuto = this.contractService.getAll()[this.contractService.getAll().length - 1].contractId + 1;
 
   curDate = new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate();
 

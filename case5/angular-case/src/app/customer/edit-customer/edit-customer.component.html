@@ -10,12 +10,12 @@
 
       <div class="mt-3 form-group">
         <input type="number" id="id" class="form-control" placeholder="Nhập Id: " name="id"
-               formControlName="customerId" hidden>
+               formControlName="id" hidden>
       </div>
 
       <div class="mb-3 text-danger"
-           *ngIf="formEditCustomer.controls.customerId.hasError('required')
-            && formEditCustomer.controls.customerId.dirty">
+           *ngIf="formEditCustomer.controls.id.hasError('required')
+            && formEditCustomer.controls.id.dirty">
         Không Được Để Trống!
       </div>
 
@@ -26,27 +26,27 @@
       </div>
 
       <div class="mb-3 text-danger"
-           *ngIf="formEditCustomer.controls.customerName.hasError('pattern')
+           *ngIf="formEditCustomer.controls.customerName.hasError('required')
             && formEditCustomer.controls.customerName.dirty">
-        Tên khách hàng không được chứa số, và các kí tự đầu tiên của mỗi từ phải viết hoa!
+        Tên khách hàng không được để trống!
       </div>
 
       <div class="mt-3 form-group">
         <label for="dateOfBirth" class="h6">Ngày Sinh:</label>
-        <input type="date" id="dateOfBirth" class="form-control"  name="dateOfBirth"
-               formControlName="customerDateOfBirth">
+        <input type="date" id="dateOfBirth" class="form-control" name="customerBirthday"
+               formControlName="customerBirthday">
       </div>
 
       <div class="mb-3 text-danger"
-           *ngIf="formEditCustomer.controls.customerDateOfBirth.hasError('required')
-            && formEditCustomer.controls.customerDateOfBirth.dirty">
+           *ngIf="formEditCustomer.controls.customerBirthday.hasError('required')
+            && formEditCustomer.controls.customerBirthday.dirty">
         Không Được Để Trống!
       </div>
 
       <div class="mt-3 form-group">
         <label for="idCard" class="h6">CCND/CMND:</label>
         <input type="number" id="idCard" class="form-control" placeholder="Nhập CCMD/CMND" name="idCard"
-               formControlName="customerIdCard"  >
+               formControlName="customerIdCard">
       </div>
 
       <div class="mb-3 text-danger"
@@ -56,21 +56,21 @@
       </div>
 
       <div class="mt-3 form-group">
-        <label for="phone" class="h6">Số Điện Thoại:</label>
-        <input type="text" id="phone" class="form-control" placeholder="Nhập Số Điện Thoại" name="phone"
-               formControlName="customerPhoneNumber"   >
+        <label for="customerPhone" class="h6">Số Điện Thoại:</label>
+        <input type="text" id="customerPhone" class="form-control" placeholder="Nhập Số Điện Thoại" name="customerPhone"
+               formControlName="customerPhone">
       </div>
 
       <div class="mb-3 text-danger"
-           *ngIf="formEditCustomer.controls.customerPhoneNumber.hasError('pattern')
-            && formEditCustomer.controls.customerPhoneNumber.dirty">
+           *ngIf="formEditCustomer.controls.customerPhone.hasError('pattern')
+            && formEditCustomer.controls.customerPhone.dirty">
         Số điện thoại phải đúng định dạng 090xxxxxxx hoặc 091xxxxxxx hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx.
       </div>
 
       <div class="mt-3 form-group">
         <label for="email" class="h6">Email:</label>
         <input type="text" id="email" class="form-control" placeholder="Nhập Email" name="email"
-               formControlName="customerEmail"    >
+               formControlName="customerEmail">
       </div>
 
       <div class="mb-3 text-danger"
@@ -82,7 +82,7 @@
       <div class="mt-3 form-group">
         <label for="address" class="h6">Địa Chỉ:</label>
         <input type="text" id="address" class="form-control" placeholder="Nhập Địa Chỉ" name="address"
-               formControlName="customerAddress"   >
+               formControlName="customerAddress">
       </div>
 
       <div class="mb-3 text-danger"
@@ -94,7 +94,7 @@
       <div class="mt-3 form-group">
         <label for="gender" class="h6">Giới Tính:</label>
         <input type="text" id="gender" class="form-control" placeholder="Nhập Địa Chỉ" name="address"
-               formControlName="customerGender"   >
+               formControlName="customerGender">
       </div>
 
       <div class="mb-3 text-danger"
@@ -106,23 +106,20 @@
       <div class="mt-3 form-group">
         <label class="h6" for="customerType">Loại Khách Hàng:</label>
         <div class="input-group">
-          <select id="customerType" class="form-select" formControlName="customerType"  >
-            <option *ngFor="let c of customerTypeList" [ngValue]="c.id" >
-              {{c.name}}
+          <select id="customerType" class="form-select" formControlName="customerType"
+                  [compareWith]="compareWithId" name="customerType">
+            <option *ngFor="let c of customerTypeList" [ngValue]="c">
+              {{c.customerTypeName}}
             </option>
           </select>
           <span class="input-group-text"><i class="fa-solid fa-ranking-star"></i></span>
         </div>
       </div>
 
-      <div class="mb-3 text-danger"
-           *ngIf="formEditCustomer.controls.customerType.hasError('required')
-            && formEditCustomer.controls.customerType.dirty">
-        Không Được Để Trống.
-      </div>
 
       <div class="mt-3 text-center">
-        <button class="btn btn-info btn-sm" (click)="updateCustomer()" [disabled]="formEditCustomer.invalid">Lưu</button>
+        <button class="btn btn-info btn-sm" (click)="updateCustomer()" [disabled]="formEditCustomer.invalid">Lưu
+        </button>
       </div>
     </div>
   </div>

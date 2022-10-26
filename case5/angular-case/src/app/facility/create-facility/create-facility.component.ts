@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {FacilityService} from "../service/facility.service";
+import {FacilityService} from "../../service/facility.service";
 
 @Component({
   selector: 'app-create-facility',
-  templateUrl: './create-facility.component.html',
+  templateUrl:'./create-facility.component.html',
   styleUrls: ['./create-facility.component.css']
 })
 export class CreateFacilityComponent implements OnInit {
@@ -25,7 +25,6 @@ export class CreateFacilityComponent implements OnInit {
     facilityImage: new FormControl('', Validators.required)
   });
 
-  facilityTypeList: string[] = ['Villa', 'House', 'Room'];
   rentTypeList: string[] = ['Giờ', 'Ngày', 'Tháng', 'Năm'];
 
   status: string;

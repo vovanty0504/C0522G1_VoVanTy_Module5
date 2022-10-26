@@ -46,18 +46,18 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let customer of customerList; index as i">
-    <td>{{i + 1}}</td>
+  <tr *ngFor="let customer of customerListPaging; index as i">
+    <td>{{i + 1 + (curPage - 1) * 5}}</td>
     <td>{{customer.customerName}}</td>
-    <td>{{customer.customerDateOfBirth}}</td>
+    <td>{{customer.customerBirthday}}</td>
     <td>{{customer.customerGender}}</td>
     <td>{{customer.customerIdCard}}</td>
-    <td>{{customer.customerPhoneNumber}}</td>
+    <td>{{customer.customerPhone}}</td>
     <td>{{customer.customerEmail}}</td>
     <td>{{customer.customerAddress}}</td>
-    <td>{{customer.customerType}}</td>
+    <td>{{customer.customerType.customerTypeName}}</td>
     <td class="text-center">
-      <a routerLink="/customer/edit/{{customer.customerId}}">
+      <a routerLink="/customer/edit/{{customer.id}}">
         <button class="btn btn-success btn-outline-secondary btn-sm">
           <span class="fa-solid fa-user-pen text-light h6 m-auto px-2"></span>
         </button>
@@ -74,13 +74,24 @@
   </tbody>
 </table>
 
-<nav aria-label="Page navigation example" style="margin-top: 20px">
-  <ul class="pagination justify-content-center">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+<nav aria-label="..." class="justify-content-center d-flex">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" (click)="previous()" *ngIf="curPage > 1">&laquo; Trang trước</a>
+    </li>
+    <li class="page-item disabled" *ngIf="curPage <= 1">
+      <a class="page-link">&laquo;</a>
+    </li>
+
+    <li class="page-item"><a class="page-link disabled" href="" [text]="curPage + ' / ' + totalPage"></a>
+    </li>
+
+    <li class="page-item">
+      <a class="page-link" (click)="next()" *ngIf="curPage < totalPage">Trang sau &raquo;</a>
+    </li>
+    <li class="page-item disabled" *ngIf="curPage >= totalPage">
+      <a class="page-link">&raquo;</a>
+    </li>
   </ul>
 </nav>
 

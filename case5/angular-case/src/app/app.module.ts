@@ -5,16 +5,16 @@ import {AppComponent} from './app.component';
 import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
 import {HomeComponent} from './home/home.component';
-import {CustomerComponent} from './customer/customer.component';
-import {EditCustomerComponent} from './edit-customer/edit-customer.component';
-import {ContractComponent} from './contract/contract.component';
-import {CreateContractComponent} from './create-contract/create-contract.component';
-import {CreateCustomerComponent} from './create-customer/create-customer.component';
-import {EditFacilityComponent} from "./edit-facility/edit-facility.component";
-import {FacilityListComponent} from './facility-list/facility-list.component';
-import {FacilityComponent} from './facility/facility.component';
-import {CreateFacilityComponent} from './create-facility/create-facility.component';
+import {EditCustomerComponent} from './customer/edit-customer/edit-customer.component';
+import {CreateContractComponent} from './contract/create-contract/create-contract.component';
+import {CreateCustomerComponent} from './customer/create-customer/create-customer.component';
+import {EditFacilityComponent} from "./facility/edit-facility/edit-facility.component";
+import {FacilityListComponent} from './facility/facility-list/facility-list.component';
+import {CreateFacilityComponent} from './facility/create-facility/create-facility.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
+import { ContractListComponent } from './contract/contract-list/contract-list.component';
+import { HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -22,21 +22,21 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     FooterComponent,
     HeaderComponent,
     HomeComponent,
-    CustomerComponent,
     EditCustomerComponent,
-    ContractComponent,
     CreateContractComponent,
     CreateCustomerComponent,
     EditFacilityComponent,
     FacilityListComponent,
-    FacilityComponent,
-    CreateFacilityComponent
+    CreateFacilityComponent,
+    CustomerListComponent,
+    ContractListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

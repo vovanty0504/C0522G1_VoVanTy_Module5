@@ -2,7 +2,7 @@ import {Facility} from "./facility";
 import {Customer} from "./customer";
 
 export interface Contract {
-  contractId?: number;
+  id?: number;
   startDate?: string;
   endDate?: string;
   deposit?: number;

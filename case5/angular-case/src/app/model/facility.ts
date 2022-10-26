@@ -1,5 +1,5 @@
 export interface Facility {
-  facilityId?: number;
+  id?: number;
   facilityName?: string;
   facilityArea?: number;
   rentCost?: number;

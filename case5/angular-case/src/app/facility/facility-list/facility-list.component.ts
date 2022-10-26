@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FacilityService} from "../service/facility.service";
-import {Facility} from "../model/facility";
+import {FacilityService} from "../../service/facility.service";
+import {Facility} from "../../model/facility";
 
 @Component({
   selector: 'app-facility-list',
@@ -15,11 +15,9 @@ export class FacilityListComponent implements OnInit {
   }
 
   getAll() {
-    return this.facilityList = this.facilityService.getAll();
   }
 
   ngOnInit(): void {
-    this.getAll();
   }
 
 }

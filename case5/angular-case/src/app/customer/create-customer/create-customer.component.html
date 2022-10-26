@@ -5,17 +5,17 @@
     <div class="w-50 border border-info p-3"
           [formGroup]="formCreateCustomer">
 
-      <div class="mt-3 form-group">
-        <label for="id" class="h6">Nhập Id:</label>
-        <input type="number" id="id" class="form-control" placeholder="Nhập Id: " name="id"
-               formControlName="customerId">
-      </div>
+<!--      <div class="mt-3 form-group">-->
+<!--        <label for="id" class="h6">Nhập Id:</label>-->
+<!--        <input type="number" id="id" class="form-control" placeholder="Nhập Id: " name="id"-->
+<!--               formControlName="customerId">-->
+<!--      </div>-->
 
-      <div class="mb-3 text-danger"
-           *ngIf="formCreateCustomer.controls.customerId.hasError('required')
-            && formCreateCustomer.controls.customerId.dirty">
-        Không Được Để Trống!
-      </div>
+<!--      <div class="mb-3 text-danger"-->
+<!--           *ngIf="formCreateCustomer.controls.customerId.hasError('required')-->
+<!--            && formCreateCustomer.controls.customerId.dirty">-->
+<!--        Không Được Để Trống!-->
+<!--      </div>-->
 
       <div class="mt-3 form-group">
         <label for="name" class="h6">Tên Khách Hàng:</label>
@@ -30,14 +30,14 @@
       </div>
 
       <div class="mt-3 form-group">
-        <label for="dateOfBirth" class="h6">Ngày Sinh:</label>
-        <input type="date" id="dateOfBirth" class="form-control"  name="dateOfBirth"
-              formControlName="customerDateOfBirth">
+        <label for="customerBirthday" class="h6">Ngày Sinh:</label>
+        <input type="date" id="customerBirthday" class="form-control"  name="customerBirthday"
+              formControlName="customerBirthday">
       </div>
 
       <div class="mb-3 text-danger"
-           *ngIf="formCreateCustomer.controls.customerDateOfBirth.hasError('required')
-            && formCreateCustomer.controls.customerDateOfBirth.dirty">
+           *ngIf="formCreateCustomer.controls.customerBirthday.hasError('required')
+            && formCreateCustomer.controls.customerBirthday.dirty">
         Không Được Để Trống!
       </div>
 
@@ -56,12 +56,12 @@
       <div class="mt-3 form-group">
         <label for="phone" class="h6">Số Điện Thoại:</label>
         <input type="text" id="phone" class="form-control" placeholder="Nhập Số Điện Thoại" name="phone"
-               formControlName="customerPhoneNumber"   >
+               formControlName="customerPhone"   >
       </div>
 
       <div class="mb-3 text-danger"
-           *ngIf="formCreateCustomer.controls.customerPhoneNumber.hasError('pattern')
-            && formCreateCustomer.controls.customerPhoneNumber.dirty">
+           *ngIf="formCreateCustomer.controls.customerPhone.hasError('pattern')
+            && formCreateCustomer.controls.customerPhone.dirty">
         Số điện thoại phải đúng định dạng 090xxxxxxx hoặc 091xxxxxxx hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx.
       </div>
 
@@ -104,9 +104,9 @@
       <div class="mt-3 form-group">
         <label class="h6" for="customerType">Loại Khách Hàng:</label>
         <div class="input-group">
-          <select id="customerType" class="form-select" formControlName="customerType" >
-           <option *ngFor="let c of customerTypeList" [ngValue]="c.id">
-             {{c.name}}
+          <select id="customerType" class="form-select" formControlName="customerType" [compareWith]="compareWithId">
+           <option *ngFor="let c of customerTypeList" [ngValue]="c">
+             {{c.customerTypeName}}
            </option>
           </select>
           <span class="input-group-text"><i class="fa-solid fa-ranking-star"></i></span>
