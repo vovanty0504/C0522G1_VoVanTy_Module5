@@ -92,9 +92,31 @@
       </div>
 
       <div class="mt-3 form-group">
-        <label for="gender" class="h6">Giới Tính:</label>
-        <input type="text" id="gender" class="form-control" placeholder="Nhập Địa Chỉ" name="address"
-               formControlName="customerGender">
+        <label class="h6">Giới tính:</label>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="formEditCustomer.controls.customerGender.hasError('required') &&
+                      formEditCustomer.controls.customerGender.touched">
+          Vui lòng chọn giới tính!
+        </div>
+        <div class="d-flex">
+          <label class="d-block me-4">
+            <input class="form-check-input" type="radio" id="male" value="Male"
+                   formControlName="customerGender"/> Male
+            <i class="fa-solid fa-mars"></i>
+          </label>
+
+          <label class="d-block me-4">
+            <input class="form-check-input" type="radio" id="female" value="Female"
+                   formControlName="customerGender"/> Female
+            <i class="fa-solid fa-venus"></i>
+          </label>
+
+          <label class="d-block">
+            <input class="form-check-input" type="radio" id="ljbt" value="LGBT"
+                   formControlName="customerGender"/> LGBT
+            <i class="fa-solid fa-heart"></i>
+          </label>
+        </div>
       </div>
 
       <div class="mb-3 text-danger"

@@ -1,28 +1,28 @@
 <h1 class="text-center" style="margin-top: 50px">Danh Sách Khách Hàng</h1>
 <nav class="navbar navbar-expand-lg pb-0 mb-0">
   <div class="container-fluid">
-    <a href="create.html">
+    <a routerLink="/customer/create">
       <button class="btn btn-success btn-outline-secondary btn-sm">
         <span class="fa-solid fa-person-circle-plus text-light h5 my-auto me-1"></span>
         <span class="text-light"> Thêm Mới Khách Hàng</span>
       </button>
     </a>
 
+
     <form class="d-flex my-2" role="search" action="#">
       <input class="form-control me-2" type="text" placeholder="Tìm Kiếm Tên"
              aria-label="Search"
-             name="nameSearch">
+             name="nameSearch" [(ngModel)]="customerNameSearch">
 
       <input class="form-control me-2" type="text" placeholder="Tìm Kiếm Địa Chỉ"
              aria-label="Search"
-             name="addressSearch">
-
+             name="addressSearch" [(ngModel)]="customerAddressSearch">
 
       <input class="form-control me-2" type="text"
              placeholder="Tìm Kiến Số Điện Thoại" aria-label="Search"
-             name="phoneSearch">
+             name="phoneSearch" [(ngModel)]="customerPhoneSearch">
 
-      <button class="btn btn-outline-success" type="submit" name="action" value="search">
+      <button class="btn btn-outline-success" type="submit" name="action" value="search" (click)="searchByMore()">
         <i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
   </div>
@@ -47,9 +47,9 @@
   </thead>
   <tbody>
   <tr *ngFor="let customer of customerListPaging; index as i">
-    <td>{{i + 1 + (curPage - 1) * 5}}</td>
-    <td>{{customer.customerName}}</td>
-    <td>{{customer.customerBirthday}}</td>
+    <td>{{i + 1 + (curPage - 1) * numberRecord}}</td>
+    <td>{{customer.customerName | titlecase}}</td>
+    <td>{{customer.customerBirthday | date:"dd/MM/yyyy"}}</td>
     <td>{{customer.customerGender}}</td>
     <td>{{customer.customerIdCard}}</td>
     <td>{{customer.customerPhone}}</td>
@@ -64,9 +64,9 @@
       </a>
     </td>
     <td class="text-center">
-      <button
-        class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
-        data-bs-target="#deleteCustomer">
+      <button data-bs-toggle="modal" data-bs-target="#deleteCustomer"
+              class="btn btn-danger btn-outline-secondary btn-sm"
+              (click)="getInfoCustomerDelete(customer.customerName, customer.id)">
         <span class="fa-solid fa-person-circle-minus text-light h6 m-auto px-2"></span>
       </button>
     </td>
@@ -83,7 +83,8 @@
       <a class="page-link">&laquo;</a>
     </li>
 
-    <li class="page-item"><a class="page-link disabled" href="" [text]="curPage + ' / ' + totalPage"></a>
+    <li class="page-item"><a class="page-link disabled" href="" [text]="curPage + ' / ' +
+    totalPage" *ngIf="curPage <= totalPage"></a>
     </li>
 
     <li class="page-item">
@@ -104,18 +105,16 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form action="#">
-        <div class="modal-body">
-          <span class="h6">Khách hàng:</span><strong id="nameDelete" class="text-danger ps-2">Võ Văn
-          Tý</strong>
-          <input type="hidden" name="idDelete" id="idDelete" readonly/>
-        </div>
+      <div class="modal-body">
+        <span class="h6">Khách hàng:</span><strong class="text-danger ps-2">{{customerNameDelete}}</strong>
+      </div>
 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-          <button type="submit" class="btn btn-danger" value="delete">Xóa</button>
-        </div>
-      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="submit" class="btn btn-danger" value="delete" (click)="deleteCustomer()" data-bs-dismiss="modal">
+          Xóa
+        </button>
+      </div>
     </div>
   </div>
 

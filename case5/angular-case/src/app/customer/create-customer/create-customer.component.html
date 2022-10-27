@@ -3,19 +3,19 @@
   <div class="d-flex justify-content-center">
 
     <div class="w-50 border border-info p-3"
-          [formGroup]="formCreateCustomer">
+         [formGroup]="formCreateCustomer">
 
-<!--      <div class="mt-3 form-group">-->
-<!--        <label for="id" class="h6">Nhập Id:</label>-->
-<!--        <input type="number" id="id" class="form-control" placeholder="Nhập Id: " name="id"-->
-<!--               formControlName="customerId">-->
-<!--      </div>-->
+      <!--      <div class="mt-3 form-group">-->
+      <!--        <label for="id" class="h6">Nhập Id:</label>-->
+      <!--        <input type="number" id="id" class="form-control" placeholder="Nhập Id: " name="id"-->
+      <!--               formControlName="customerId">-->
+      <!--      </div>-->
 
-<!--      <div class="mb-3 text-danger"-->
-<!--           *ngIf="formCreateCustomer.controls.customerId.hasError('required')-->
-<!--            && formCreateCustomer.controls.customerId.dirty">-->
-<!--        Không Được Để Trống!-->
-<!--      </div>-->
+      <!--      <div class="mb-3 text-danger"-->
+      <!--           *ngIf="formCreateCustomer.controls.customerId.hasError('required')-->
+      <!--            && formCreateCustomer.controls.customerId.dirty">-->
+      <!--        Không Được Để Trống!-->
+      <!--      </div>-->
 
       <div class="mt-3 form-group">
         <label for="name" class="h6">Tên Khách Hàng:</label>
@@ -31,8 +31,8 @@
 
       <div class="mt-3 form-group">
         <label for="customerBirthday" class="h6">Ngày Sinh:</label>
-        <input type="date" id="customerBirthday" class="form-control"  name="customerBirthday"
-              formControlName="customerBirthday">
+        <input type="date" id="customerBirthday" class="form-control" name="customerBirthday"
+               formControlName="customerBirthday">
       </div>
 
       <div class="mb-3 text-danger"
@@ -44,7 +44,7 @@
       <div class="mt-3 form-group">
         <label for="idCard" class="h6">CCND/CMND:</label>
         <input type="number" id="idCard" class="form-control" placeholder="Nhập CCMD/CMND" name="idCard"
-             formControlName="customerIdCard"  >
+               formControlName="customerIdCard">
       </div>
 
       <div class="mb-3 text-danger"
@@ -56,7 +56,7 @@
       <div class="mt-3 form-group">
         <label for="phone" class="h6">Số Điện Thoại:</label>
         <input type="text" id="phone" class="form-control" placeholder="Nhập Số Điện Thoại" name="phone"
-               formControlName="customerPhone"   >
+               formControlName="customerPhone">
       </div>
 
       <div class="mb-3 text-danger"
@@ -68,7 +68,7 @@
       <div class="mt-3 form-group">
         <label for="email" class="h6">Email:</label>
         <input type="text" id="email" class="form-control" placeholder="Nhập Email" name="email"
-               formControlName="customerEmail"    >
+               formControlName="customerEmail">
       </div>
 
       <div class="mb-3 text-danger"
@@ -80,7 +80,7 @@
       <div class="mt-3 form-group">
         <label for="address" class="h6">Địa Chỉ:</label>
         <input type="text" id="address" class="form-control" placeholder="Nhập Địa Chỉ" name="address"
-           formControlName="customerAddress"   >
+               formControlName="customerAddress">
       </div>
 
       <div class="mb-3 text-danger"
@@ -89,25 +89,44 @@
         Không Được Để Trống
       </div>
 
+
       <div class="mt-3 form-group">
-        <label for="gender" class="h6">Giới Tính:</label>
-        <input type="text" id="gender" class="form-control" placeholder="Nhập Địa Chỉ" name="address"
-           formControlName="customerGender"   >
+        <label class="h6">Giới tính:</label>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="formCreateCustomer.controls.customerGender.hasError('required') &&
+                      formCreateCustomer.controls.customerGender.touched">
+          Vui lòng chọn giới tính!
+        </div>
+        <div class="d-flex">
+          <label class="d-block me-4">
+            <input class="form-check-input" type="radio" id="male" value="nam"
+                   formControlName="customerGender"/> Nam
+            <i class="fa-solid fa-mars"></i>
+          </label>
+
+          <label class="d-block me-4">
+            <input class="form-check-input" type="radio" id="female" value="Nữ"
+                   formControlName="customerGender"/> Nữ
+            <i class="fa-solid fa-venus"></i>
+          </label>
+
+          <label class="d-block">
+            <input class="form-check-input" type="radio" id="ljbt" value="LGBT"
+                   formControlName="customerGender"/> LGBT
+            <i class="fa-solid fa-heart"></i>
+          </label>
+        </div>
       </div>
 
-      <div class="mb-3 text-danger"
-           *ngIf="formCreateCustomer.controls.customerGender.hasError('required')
-            && formCreateCustomer.controls.customerGender.dirty">
-        Không Được Để Trống.
-      </div>
 
       <div class="mt-3 form-group">
         <label class="h6" for="customerType">Loại Khách Hàng:</label>
         <div class="input-group">
-          <select id="customerType" class="form-select" formControlName="customerType" [compareWith]="compareWithId">
-           <option *ngFor="let c of customerTypeList" [ngValue]="c">
-             {{c.customerTypeName}}
-           </option>
+          <select id="customerType" class="form-select" formControlName="customerType">
+            <option value="" disabled>Chọn Loại Khách</option>
+            <option *ngFor="let c of customerTypeList" [ngValue]="c">
+              {{c.customerTypeName}}
+            </option>
           </select>
           <span class="input-group-text"><i class="fa-solid fa-ranking-star"></i></span>
         </div>
@@ -120,7 +139,8 @@
       </div>
 
       <div class="mt-3 text-center">
-        <button class="btn btn-info btn-sm" (click)="createCustomer()" [disabled]="formCreateCustomer.invalid">Lưu</button>
+        <button class="btn btn-info btn-sm" (click)="createCustomer()" [disabled]="formCreateCustomer.invalid">Lưu
+        </button>
       </div>
     </div>
   </div>

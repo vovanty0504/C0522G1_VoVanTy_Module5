@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FacilityService} from "../../service/facility.service";
-import {CustomerService} from "../../customer/service/customer.service";
+
 import {ContractService} from "../../service/contract.service";
+import {CustomerService} from "../../service/customer/customer.service";
 
 @Component({
   selector: 'app-create-contract',

@@ -1,15 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {Customer} from "../../model/customer";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {CustomerService} from "../service/customer.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CustomerTypeService} from "../service/customer-type.service";
 import {CustomerType} from "../../model/customer-type";
+import Swal from 'sweetalert2';
+import {CustomerService} from "../../service/customer/customer.service";
+import {CustomerTypeService} from "../../service/customer/customer-type.service";
+
+
 
 @Component({
   selector: 'app-edit-customer',
   templateUrl: './edit-customer.component.html',
   styleUrls: ['./edit-customer.component.css']
+
 })
 export class EditCustomerComponent implements OnInit {
 
@@ -33,6 +37,7 @@ export class EditCustomerComponent implements OnInit {
     const id = Number(this.activatedRoute.snapshot.params.id);
     this.customerService.findById(id).subscribe(value => {
       this.customers = value
+      console.log(value)
       this.formEditCustomer.patchValue(value);
     })
     this.formEditCustomer = new FormGroup({
@@ -58,8 +63,18 @@ export class EditCustomerComponent implements OnInit {
   updateCustomer() {
     const customerObj = this.formEditCustomer.value;
     this.customerService.updateCustomer(customerObj).subscribe(value => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Cập nhập thành công!',
+        text: 'Khách hàng: ' + this.customers.customerName,
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      });
       this.router.navigateByUrl('customer/list');
-
     })
   }
 

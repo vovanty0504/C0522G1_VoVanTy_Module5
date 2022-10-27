@@ -1,9 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {CustomerService} from "../service/customer.service";
 import {Router} from "@angular/router";
-import {CustomerTypeService} from "../service/customer-type.service";
 import {CustomerType} from "../../model/customer-type";
+import Swal from 'sweetalert2';
+import {Customer} from "../../model/customer";
+import {CustomerService} from "../../service/customer/customer.service";
+import {CustomerTypeService} from "../../service/customer/customer-type.service";
+
+
 
 @Component({
   selector: 'app-create-customer',
@@ -11,6 +15,7 @@ import {CustomerType} from "../../model/customer-type";
   styleUrls: ['./create-customer.component.css']
 })
 export class CreateCustomerComponent implements OnInit {
+  customer: Customer;
 
   formCreateCustomer: FormGroup;
   customerTypeList: CustomerType[] = []
@@ -43,6 +48,17 @@ export class CreateCustomerComponent implements OnInit {
   createCustomer(): void {
     const customers = this.formCreateCustomer.value;
     this.customerService.saveCustomer(customers).subscribe(value => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Thêm Mới Thành Công!!',
+        text: 'Khách hàng: ' ,
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      });
       this.formCreateCustomer.reset();
       this.router.navigateByUrl('customer/list');
 

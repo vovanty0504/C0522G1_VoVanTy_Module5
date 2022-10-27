@@ -5,16 +5,14 @@ import {AppComponent} from './app.component';
 import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
 import {HomeComponent} from './home/home.component';
-import {EditCustomerComponent} from './customer/edit-customer/edit-customer.component';
 import {CreateContractComponent} from './contract/create-contract/create-contract.component';
-import {CreateCustomerComponent} from './customer/create-customer/create-customer.component';
 import {EditFacilityComponent} from "./facility/edit-facility/edit-facility.component";
 import {FacilityListComponent} from './facility/facility-list/facility-list.component';
 import {CreateFacilityComponent} from './facility/create-facility/create-facility.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { CustomerListComponent } from './customer/customer-list/customer-list.component';
-import { ContractListComponent } from './contract/contract-list/contract-list.component';
-import { HttpClientModule} from "@angular/common/http";
+import {ContractListComponent} from './contract/contract-list/contract-list.component';
+import {HttpClientModule} from "@angular/common/http";
+import {CustomerModule} from "./customer/customer.module";
 
 @NgModule({
   declarations: [
@@ -22,23 +20,23 @@ import { HttpClientModule} from "@angular/common/http";
     FooterComponent,
     HeaderComponent,
     HomeComponent,
-    EditCustomerComponent,
     CreateContractComponent,
-    CreateCustomerComponent,
     EditFacilityComponent,
     FacilityListComponent,
     CreateFacilityComponent,
-    CustomerListComponent,
-    ContractListComponent
+    ContractListComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CustomerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
