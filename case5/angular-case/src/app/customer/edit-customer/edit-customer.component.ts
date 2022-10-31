@@ -18,8 +18,8 @@ import {CustomerTypeService} from "../../service/customer/customer-type.service"
 export class EditCustomerComponent implements OnInit {
 
   customers: Customer;
-  formEditCustomer: FormGroup;
-  customerTypeList: CustomerType[] = [];
+    formEditCustomer: FormGroup;
+    customerTypeList: CustomerType[] = [];
 
   getAllCustomerType() {
     this.customerTypeService.getAll().subscribe(value => {

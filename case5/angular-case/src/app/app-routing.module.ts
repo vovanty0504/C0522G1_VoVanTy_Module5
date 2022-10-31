@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'customer', loadChildren: () => CustomerModule},
   {path: 'contract', loadChildren: () => ContractModule},
-  {path: 'contract', loadChildren: () => FacilityModule},
+  {path: 'facility', loadChildren: () => FacilityModule},
 ];
 
 @NgModule({

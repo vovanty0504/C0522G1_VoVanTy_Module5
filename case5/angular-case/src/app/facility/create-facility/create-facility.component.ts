@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {FacilityService} from "../../service/facility.service";
+import Swal from "sweetalert2";
+import {Router} from "@angular/router";
+import {FacilityType} from "../../model/facility-type";
+import {RentType} from "../../model/rent-type";
 
 @Component({
   selector: 'app-create-facility',
@@ -10,7 +14,6 @@ import {FacilityService} from "../../service/facility.service";
 export class CreateFacilityComponent implements OnInit {
 
   facilityFormGroup: FormGroup = new FormGroup({
-    facilityId: new FormControl(''),
     facilityName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]),
     facilityArea: new FormControl('', [Validators.required, Validators.pattern('^[1-9]\\d*$')]),
     rentCost: new FormControl('', [Validators.required, Validators.pattern('^[1-9]\\d*$')]),
@@ -25,17 +28,45 @@ export class CreateFacilityComponent implements OnInit {
     facilityImage: new FormControl('', Validators.required)
   });
 
-  rentTypeList: string[] = ['Giờ', 'Ngày', 'Tháng', 'Năm'];
+  facilityTypeList: FacilityType[];
+  rentTypeList: RentType[];
 
-  status: string;
+  facilityType: FacilityType = {
+    id: 4,
+    facilityTypeName: ''
+  };
 
-  constructor(private facilityService: FacilityService) {
+  constructor(private facilityService: FacilityService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
+    this.facilityService.findAllFacilityType().subscribe(value => {
+      this.facilityTypeList = value;
+    });
+
+    this.facilityService.findAllRentType().subscribe(value => {
+      this.rentTypeList = value;
+    });
   }
 
-  submit() {
-
+  submit(): void {
+    const facility = this.facilityFormGroup.value;
+    this.facilityService.addFacility(facility).subscribe(() => {
+      this.facilityFormGroup.reset();
+    }, error => {
+      console.log(error);
+    }, () => {
+      Swal.fire({
+        title: 'Thêm mới thành công!',
+        text: 'Dịch vụ: ' + facility.facilityName,
+        imageUrl: facility.facilityImage,
+        imageHeight: 250,
+        imageWidth: 400
+      });
+      this.router.navigateByUrl('facility/list');
+      console.log('Thêm mới dịch vụ thành công!');
+    });
   }
 }
+

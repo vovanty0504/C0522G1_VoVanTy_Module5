@@ -13,18 +13,14 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ContractListComponent} from './contract/contract-list/contract-list.component';
 import {HttpClientModule} from "@angular/common/http";
 import {CustomerModule} from "./customer/customer.module";
+import {FacilityModule} from "./facility/facility.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    HomeComponent,
-    CreateContractComponent,
-    EditFacilityComponent,
-    FacilityListComponent,
-    CreateFacilityComponent,
-    ContractListComponent,
+    HomeComponent
 
   ],
   imports: [
@@ -33,7 +29,8 @@ import {CustomerModule} from "./customer/customer.module";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CustomerModule
+    CustomerModule,
+    FacilityModule
   ],
   providers: [],
   bootstrap: [AppComponent]

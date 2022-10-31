@@ -1,0 +1,154 @@
+<title>Edit Customer</title>
+
+<div class="mx-5 px-5 pt-3">
+
+  <h2 class="text-center fw-bold text-danger">Chỉnh Sửa Khách Hàng</h2>
+  <div class="mt-3 text-center">
+    <a routerLink="">Quay Về Danh Sách</a>
+  </div>
+
+  <div class="d-flex justify-content-center">
+
+    <div class="w-50 border border-info p-3"
+         [formGroup]="formEditCustomer">
+
+      <div class="mt-3 form-group">
+        <input type="number" id="id" class="form-control" placeholder="Nhập Id: " name="id"
+               formControlName="id" hidden>
+      </div>
+
+
+      <div class="mt-3 form-group">
+        <label for="name" class="h6">Tên Khách Hàng:</label>
+        <input type="text" id="name" class="form-control" placeholder="Nhập Tên: " name="name"
+               formControlName="customerName">
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerName.hasError('required')
+            && formEditCustomer.controls.customerName.dirty">
+        Tên khách hàng không được để trống!
+      </div>
+
+      <div class="mt-3 form-group">
+        <label for="dateOfBirth" class="h6">Ngày Sinh:</label>
+        <input type="date" id="dateOfBirth" class="form-control" name="customerBirthday"
+               formControlName="customerBirthday" [min]="minAge" [max]="maxAge"/>
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerBirthday.hasError('invalid18_80')
+            && formEditCustomer.controls.customerBirthday.touched">
+        Không Được Để Trống!
+      </div>
+
+      <div class="mt-3 form-group">
+        <label for="idCard" class="h6">CCND/CMND:</label>
+        <input type="number" id="idCard" class="form-control" placeholder="Nhập CCMD/CMND" name="idCard"
+               formControlName="customerIdCard">
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerIdCard.hasError('pattern')
+            && formEditCustomer.controls.customerIdCard.dirty">
+        CMND/CCCD phải đúng định dạng XXXXXXXXX hoặc XXXXXXXXXXXX (X là số 0-9)!
+      </div>
+
+      <div class="mt-3 form-group">
+        <label for="customerPhone" class="h6">Số Điện Thoại:</label>
+        <input type="text" id="customerPhone" class="form-control" placeholder="Nhập Số Điện Thoại" name="customerPhone"
+               formControlName="customerPhone">
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerPhone.hasError('pattern')
+            && formEditCustomer.controls.customerPhone.touched">
+        Số điện thoại phải đúng định dạng 090xxxxxxx hoặc 091xxxxxxx hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx!
+      </div>
+
+      <div class="mt-3 form-group">
+        <label for="email" class="h6">Email:</label>
+        <input type="text" id="email" class="form-control" placeholder="Nhập Email" name="email"
+               formControlName="customerEmail">
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerEmail.hasError('email')
+            && formEditCustomer.controls.customerEmail.dirty">
+        email Phải Đúng Định Dạng!
+      </div>
+
+      <div class="mt-3 form-group">
+        <label for="address" class="h6">Địa Chỉ:</label>
+        <input type="text" id="address" class="form-control" placeholder="Nhập Địa Chỉ" name="address"
+               formControlName="customerAddress">
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerAddress.hasError('required')
+            && formEditCustomer.controls.customerAddress.dirty">
+        Không Được Để Trống
+      </div>
+
+      <div class="mt-3 form-group">
+        <label class="h6">Giới tính:</label>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="formEditCustomer.controls.customerGender.hasError('required') &&
+                      formEditCustomer.controls.customerGender.touched">
+          Vui lòng chọn giới tính!
+        </div>
+        <div class="d-flex">
+          <label class="d-block me-4">
+            <input class="form-check-input" type="radio" id="male" value="Male"
+                   formControlName="customerGender"/> Male
+            <i class="fa-solid fa-mars"></i>
+          </label>
+
+          <label class="d-block me-4">
+            <input class="form-check-input" type="radio" id="female" value="Female"
+                   formControlName="customerGender"/> Female
+            <i class="fa-solid fa-venus"></i>
+          </label>
+
+          <label class="d-block">
+            <input class="form-check-input" type="radio" id="ljbt" value="LGBT"
+                   formControlName="customerGender"/> LGBT
+            <i class="fa-solid fa-heart"></i>
+          </label>
+        </div>
+      </div>
+
+      <div class="mb-3 text-danger"
+           *ngIf="formEditCustomer.controls.customerGender.hasError('required')
+            && formEditCustomer.controls.customerGender.dirty">
+        Không Được Để Trống.
+      </div>
+
+      <div class="mt-3 form-group">
+        <label class="h6" for="customerType">Loại Khách Hàng:</label>
+        <div class="input-group">
+          <select id="customerType" class="form-select" formControlName="customerType"
+                  [compareWith]="compareWithId" name="customerType">
+            <option *ngFor="let c of customerTypeList" [ngValue]="c">
+              {{c.customerTypeName}}
+            </option>
+          </select>
+          <span class="input-group-text"><i class="fa-solid fa-ranking-star"></i></span>
+        </div>
+      </div>
+
+
+      <div class="mt-3 text-center">
+        <button class="btn btn-info btn-sm" (click)="submitUpdate()" [disabled]="formEditCustomer.invalid">Lưu
+        </button>
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+</div>
+
+

@@ -1,0 +1,150 @@
+{
+  "soTietKiem": [
+    {
+      "id": 2,
+      "ngayMoSo": "2022-08-02",
+      "thoiGianBatDauGui": "2022-08-02",
+      "kyHan": "6 Tháng",
+      "soTienGui": "100000",
+      "laiXuat": "5%",
+      "uuDai": "Áo Mưa",
+      "khachHang": {
+        "id": 2,
+        "name": "Đại Lợi"
+      }
+    },
+    {
+      "id": 3,
+      "ngayMoSo": "2022-10-04",
+      "thoiGianBatDauGui": "2022-10-04",
+      "kyHan": "6 Tháng",
+      "soTienGui": "100000",
+      "laiXuat": "5%",
+      "uuDai": "Áo Mưa",
+      "khachHang": {
+        "id": 3,
+        "name": "Thủy Tiên"
+      }
+    },
+    {
+      "id": 4,
+      "ngayMoSo": "2022-04-05",
+      "thoiGianBatDauGui": "2022-04-05",
+      "kyHan": "6 Tháng",
+      "soTienGui": "100000",
+      "laiXuat": "5%",
+      "uuDai": "Áo Mưa",
+      "khachHang": {
+        "id": 4,
+        "name": "Phước Đại"
+      }
+    },
+    {
+      "id": 5,
+      "ngayMoSo": "2022-04-09",
+      "thoiGianBatDauGui": "2022-04-09",
+      "kyHan": "6 Tháng",
+      "soTienGui": "100000",
+      "laiXuat": "5%",
+      "uuDai": "Áo Mưa",
+      "khachHang": {
+        "id": 5,
+        "name": "Văn Tý"
+      }
+    },
+    {
+      "id": 6,
+      "ngayMoSo": "2022-10-10",
+      "thoiGianBatDauGui": "2022-10-10",
+      "kyHan": "6 Tháng",
+      "soTienGui": "100000",
+      "laiXuat": "5%",
+      "uuDai": "Áo Mưa",
+      "khachHang": {
+        "id": 6,
+        "name": "Văn Trí"
+      }
+    },
+    {
+      "id": 7,
+      "ngayMoSo": "2022-08-01",
+      "thoiGianBatDauGui": "2022-08-01",
+      "kyHan": "6 Tháng",
+      "soTienGui": "100000",
+      "laiXuat": "5%",
+      "uuDai": "Áo Mưa",
+      "khachHang": {
+        "id": 7,
+        "name": "Văn Name"
+      }
+    },
+    {
+      "id": 8,
+      "ngayMoSo": "2022-08-01",
+      "thoiGianBatDauGui": "2022-08-01",
+      "kyHan": "6 Tháng",
+      "soTienGui": "100000",
+      "laiXuat": "5%",
+      "uuDai": "Áo Mưa",
+      "khachHang": {
+        "id": 8,
+        "name": "Bảo Ân"
+      }
+    },
+    {
+      "id": 9,
+      "ngayMoSo": "2022-08-01",
+      "thoiGianBatDauGui": "2022-08-01",
+      "kyHan": "6 Tháng",
+      "soTienGui": "100000",
+      "laiXuat": "5%",
+      "uuDai": "Áo Mưa",
+      "khachHang": {
+        "id": 9,
+        "name": "Phạm Đạt"
+      }
+    }
+  ],
+  "khachHang": [
+    {
+      "id": 1,
+      "name": "Huỳnh Trung Thuyên"
+    },
+    {
+      "id": 2,
+      "name": "Phước Đại"
+    },
+    {
+      "id": 3,
+      "name": "Đại Lợi"
+    },
+    {
+      "id": 4,
+      "name": "Thủy Tiên"
+    },
+    {
+      "id": 5,
+      "name": "Văn Tý"
+    },
+    {
+      "id": 6,
+      "name": "Văn Trí"
+    },
+    {
+      "id": 7,
+      "name": "Văn Nam"
+    },
+    {
+      "id": 8,
+      "name": "Bảo Ân"
+    },
+    {
+      "id": 9,
+      "name": "Phạm Đạt"
+    },
+    {
+      "id": 10,
+      "name": "Duy Quyết"
+    }
+  ]
+}
