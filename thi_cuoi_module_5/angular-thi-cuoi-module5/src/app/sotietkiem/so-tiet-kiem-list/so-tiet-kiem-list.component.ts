@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Customer} from '../../model/customer';
-import {CustomerType} from '../../model/customer-type';
-import {CustomerService} from '../../service/customer.service';
 import {SoTietKiemService} from '../../service/so-tiet-kiem.service';
 import {KhachHang} from '../../model/khach-hang';
 import {SoTietKiem} from '../../model/so-tiet-kiem';
@@ -14,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class SoTietKiemListComponent implements OnInit {
 
-  ListPaging: SoTietKiem[];
+  listPaging: SoTietKiem[];
   numberRecord = 5;
   curPage = 1;
   totalPage: number;
@@ -29,6 +26,10 @@ export class SoTietKiemListComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // this.soTietKiem.getAll().subscribe(value => {
+    //   this.listPaging = value;
+    //   console.log( this.khachHangList );
+    // });
     this.soTietKiem.getAllKhachHang().subscribe(value => {
       this.khachHangList = value;
     });
@@ -47,7 +48,7 @@ export class SoTietKiemListComponent implements OnInit {
       , this.nameSearch.name).subscribe(pagingList => {
       console.log('a');
       console.log(pagingList);
-      this.ListPaging = pagingList;
+      this.listPaging = pagingList;
     }, error => {
       console.log(error);
     }, () => {
@@ -56,57 +57,57 @@ export class SoTietKiemListComponent implements OnInit {
 
   }
 
-  next(): void {
-    this.curPage++;
-    this.ngOnInit();
-  }
-
-  previous(): void {
-    this.curPage--;
-    this.ngOnInit();
-  }
-
-  searchByMore() {
-    this.curPage = 1;
-    this.ngOnInit();
-  }
-
-  compareWithId(item1, item2) {
-    return item1 && item2 && item1.id === item2.id;
-  }
-
-  resetSearchInput(): void {
-    this.nameSearch = {id: 100, name: ''};
-    this.curPage = 1;
-    this.ngOnInit();
-  }
-
-  getInfoDelete(id: number) {
-    this.idDelete = id;
-  }
-
-
-  deleteCustomer(): void {
-    this.soTietKiem.delete(this.idDelete).subscribe(() => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Xóa thành công!',
-        text: 'Số Tiết Kiệm: ' + this.idDelete,
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }
-      });
-
-      this.ngOnInit();
-
-    }, error => {
-      console.log(error);
-    }, () => {
-      console.log('Xóa khách hàng thành công!');
-    });
-  }
+  // next(): void {
+  //   this.curPage++;
+  //   this.ngOnInit();
+  // }
+  //
+  // previous(): void {
+  //   this.curPage--;
+  //   this.ngOnInit();
+  // }
+  //
+  // searchByMore() {
+  //   this.curPage = 1;
+  //   this.ngOnInit();
+  // }
+  //
+  // compareWithId(item1, item2) {
+  //   return item1 && item2 && item1.id === item2.id;
+  // }
+  //
+  // resetSearchInput(): void {
+  //   this.nameSearch = {id: 100, name: ''};
+  //   this.curPage = 1;
+  //   this.ngOnInit();
+  // }
+  //
+  // getInfoDelete(id: number) {
+  //   this.idDelete = id;
+  // }
+  //
+  //
+  // deleteCustomer(): void {
+  //   this.soTietKiem.delete(this.idDelete).subscribe(() => {
+  //     Swal.fire({
+  //       icon: 'success',
+  //       title: 'Xóa thành công!',
+  //       text: 'Số Tiết Kiệm: ' + this.idDelete,
+  //       showClass: {
+  //         popup: 'animate__animated animate__fadeInDown'
+  //       },
+  //       hideClass: {
+  //         popup: 'animate__animated animate__fadeOutUp'
+  //       }
+  //     });
+  //
+  //     this.ngOnInit();
+  //
+  //   }, error => {
+  //     console.log(error);
+  //   }, () => {
+  //     console.log('Xóa khách hàng thành công!');
+  //   });
+  // }
 
 }

@@ -4,6 +4,7 @@ import {KhachHang} from '../../model/khach-hang';
 import {SoTietKiemService} from '../../service/so-tiet-kiem.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SoTietKiem} from '../../model/so-tiet-kiem';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-so-tiet-kiem-edit',
@@ -42,7 +43,10 @@ export class SoTietKiemEditComponent implements OnInit {
       soTienGui: new FormControl(),
       laiXuat: new FormControl(),
       uuDai: new FormControl(),
-      khachHang: new FormControl()
+      khachHang: new FormGroup({
+        id: new FormControl(),
+        name: new FormControl()
+      })
     });
     this.getAllKhachHang();
   }
@@ -51,5 +55,23 @@ export class SoTietKiemEditComponent implements OnInit {
     return item1 && item2 && item1.id === item2.id;
   }
 
+
+  submitUpdate() {
+    const soTietKiemObj = this.formEdit.value;
+    this.soTietKiemService.update(soTietKiemObj).subscribe(value => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Cập nhập thành công!',
+        text: 'Sổ Tiết Kiệm: ',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      });
+      this.router.navigateByUrl('');
+    });
+  }
 }
 

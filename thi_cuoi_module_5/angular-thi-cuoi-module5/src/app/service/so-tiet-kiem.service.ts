@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {KhachHang} from '../model/khach-hang';
 import {HttpClient} from '@angular/common/http';
-import {Customer} from '../model/customer';
 import {SoTietKiem} from '../model/so-tiet-kiem';
 
 @Injectable({
@@ -10,9 +9,13 @@ import {SoTietKiem} from '../model/so-tiet-kiem';
 })
 export class SoTietKiemService {
 
-  private API_URL = 'http://localhost:3000/';
+  private API_URL = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) {
+  }
+
+  getAll(): Observable<SoTietKiem[]> {
+    return this.http.get<SoTietKiem[]>(this.API_URL + 'soTietKiem');
   }
 
   getAllKhachHang(): Observable<KhachHang[]> {

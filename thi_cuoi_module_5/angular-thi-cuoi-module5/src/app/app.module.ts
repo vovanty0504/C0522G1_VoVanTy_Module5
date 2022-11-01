@@ -5,14 +5,12 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SoTietKiemListComponent } from './sotietkiem/so-tiet-kiem-list/so-tiet-kiem-list.component';
-import { CreateSoTietKiemComponent } from './sotietkiem/create-so-tiet-kiem/create-so-tiet-kiem.component';
 import { SoTietKiemEditComponent } from './sotietkiem/so-tiet-kiem-edit/so-tiet-kiem-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SoTietKiemListComponent,
-    CreateSoTietKiemComponent,
     SoTietKiemEditComponent
   ],
   imports: [
