@@ -1,46 +1,41 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Customer} from "../../model/customer";
+import {environment} from "../../../environments/environment";
+import {DataResult} from "../../model/data-result";
+
+const URL_API = `${environment.url}`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
 
-  private API_URl = "http://localhost:3000/";
 
   constructor(private http: HttpClient) {
   }
 
 
-  saveCustomer(customer): Observable<Customer> {
-    return this.http.post<Customer>(this.API_URl + "customers", customer);
+  getCustomer(name: string, page: number, pageSize: number): Observable<DataResult<Customer>> {
+    console.log(URL_API + '/list?customerName=' + name + '&page=' + (page - 1) + '&size=' + pageSize);
+    return this.http.get<DataResult<Customer>>(URL_API + '/list?customerName=' + name + '&page=' + (page - 1) + '&size=' + pageSize);
   }
 
   findById(id: number): Observable<Customer> {
-    return this.http.get<Customer>(this.API_URl + "customers/" + id);
+    return this.http.get<Customer>(URL_API + '/' + id);
   }
 
-  updateCustomer(customer: Customer): Observable<void> {
-    console.log(customer)
-    return this.http.patch<void>(this.API_URl + "customers/" + customer.id, customer);
+  addNew(customer: Customer): Observable<void> {
+    return this.http.post<void>(URL_API + '/add', customer);
   }
 
-  deleteCustomer(id: number): Observable<Customer> {
-    return this.http.delete<Customer>(this.API_URl + "customers/" + id);
+  editObject(customer: Customer): Observable<void> {
+    console.log(customer);
+    return this.http.patch<void>(URL_API + '/edit/' + customer.id, customer);
   }
 
-  findAllCustomerSearch(nameSearch: string, addressSearch: string, phoneSearch: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.API_URl +
-      'customers?customerName_like=' + nameSearch + '&customerAddress_like=' +
-      addressSearch + '&customerPhone_like=' + phoneSearch);
+  deleteObject(id: number): Observable<void> {
+    return this.http.delete<void>(URL_API + '/del/' + id);
   }
-
-  findCustomerSearchPaging(numberRecord: number, curPage: number,
-                           nameSearch: string, addressSearch: string, phoneSearch: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.API_URl + 'customers?_page=' + curPage + '&_limit=' + numberRecord +
-      '&customerName_like=' + nameSearch + '&customerAddress_like=' + addressSearch + '&customerPhone_like=' + phoneSearch);
-  }
-
 }

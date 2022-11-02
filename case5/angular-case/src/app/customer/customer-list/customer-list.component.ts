@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Customer} from "../../model/customer";
 import Swal from 'sweetalert2';
 import {CustomerService} from "../../service/customer/customer.service";
+import {BehaviorSubject, Observable} from "rxjs";
 
 
 @Component({
@@ -12,90 +13,52 @@ import {CustomerService} from "../../service/customer/customer.service";
 export class CustomerListComponent implements OnInit {
 
 
-  customerListPaging: Customer[];
-  numberRecord = 5;
-  curPage = 1;
-  totalPage: number;
-
-  customerNameDelete: string;
-  customerIdDelete: number;
-
-  customerNameSearch = '';
-  customerAddressSearch = '';
-  customerPhoneSearch = '';
-
+  delName: string;
+  delId: number;
+  page = 1;
+  pageSize = 10;
+  name = '';
+  total$: Observable<number>;
+  customers$: Observable<Customer[]>;
 
   constructor(private customerService: CustomerService) {
-
   }
-
 
   ngOnInit(): void {
-    this.customerService.findAllCustomerSearch(this.customerNameSearch, this.customerAddressSearch, this.customerPhoneSearch)
-      .subscribe(list => {
-        this.totalPage = Math.ceil(list.length / this.numberRecord);
-      }, error => {
-        console.log(error);
-      }, () => {
-        console.log('OK!');
+    this.getAllCustomer();
+  }
+
+  getAllCustomer() {
+    this.customerService.getCustomer(this.name, this.page, this.pageSize).subscribe(value => {
+        console.log(value);
+        this.customers$ = new BehaviorSubject<Customer[]>(value.content);
+        this.total$ = new BehaviorSubject<number>(value.totalElements);
+        // console.log(value.number);
+      },
+      error => {
       });
-
-    this.customerService.findCustomerSearchPaging(this.numberRecord, this.curPage,
-      this.customerNameSearch, this.customerAddressSearch, this.customerPhoneSearch).subscribe(pagingList => {
-      this.customerListPaging = pagingList;
-    }, error => {
-      console.log(error);
-    }, () => {
-      console.log('Hiển thị khách hàng ở trang ' + this.curPage);
-    });
-
   }
 
-  next(): void {
-    this.curPage++;
-    this.ngOnInit();
+  deleteConfirm(customer: Customer) {
+    console.log(customer);
+    this.delName = customer.customerName;
+    this.delId = customer.id;
   }
 
-  previous(): void {
-    this.curPage--;
-    this.ngOnInit();
-  }
-
-  getInfoCustomerDelete(customerName: string, customerId: number): void {
-    this.customerNameDelete = customerName;
-    this.customerIdDelete = customerId;
-  }
-
-  deleteCustomer(): void {
-    this.customerService.deleteCustomer(this.customerIdDelete).subscribe(() => {
-      // if (this.curPage == undefined || this.totalPage == undefined) {
-      //   console.log("a")
-      //   this.curPage--
-      // }
+  delete() {
+    this.customerService.deleteObject(this.delId).subscribe(() => {
       Swal.fire({
+        position: 'center',
         icon: 'success',
-        title: 'Xóa thành công!',
-        text: 'Khách hàng: ' + this.customerNameDelete,
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }
+        title: 'Delete successfully!',
+        text: 'Customer: ' + this.delName,
+        showConfirmButton: false,
+        timer: 2500
       });
-
-      this.ngOnInit();
-
-    }, error => {
-      console.log(error);
-    }, () => {
-      console.log('Xóa khách hàng thành công!');
+      this.getAllCustomer();
+      // confirm('Delete successfully!\n' + this.delName);
     });
-  }
 
-  searchByMore(): void {
-    this.curPage = 1;
-    this.ngOnInit();
   }
 }
 

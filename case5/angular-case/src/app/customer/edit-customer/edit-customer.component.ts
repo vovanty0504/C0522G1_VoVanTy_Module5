@@ -8,7 +8,6 @@ import {CustomerService} from "../../service/customer/customer.service";
 import {CustomerTypeService} from "../../service/customer/customer-type.service";
 
 
-
 @Component({
   selector: 'app-edit-customer',
   templateUrl: './edit-customer.component.html',
@@ -18,8 +17,9 @@ import {CustomerTypeService} from "../../service/customer/customer-type.service"
 export class EditCustomerComponent implements OnInit {
 
   customers: Customer;
-    formEditCustomer: FormGroup;
-    customerTypeList: CustomerType[] = [];
+  formEditCustomer: FormGroup;
+  customerTypeList: CustomerType[] = [];
+
 
   getAllCustomerType() {
     this.customerTypeService.getAll().subscribe(value => {
@@ -34,7 +34,7 @@ export class EditCustomerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = Number(this.activatedRoute.snapshot.params.id);
+    const id = Number(this.activatedRoute.snapshot.params.idUpdate);
     this.customerService.findById(id).subscribe(value => {
       this.customers = value
       console.log(value)
@@ -62,7 +62,7 @@ export class EditCustomerComponent implements OnInit {
 
   updateCustomer() {
     const customerObj = this.formEditCustomer.value;
-    this.customerService.updateCustomer(customerObj).subscribe(value => {
+    this.customerService.editObject(customerObj).subscribe(value => {
       Swal.fire({
         icon: 'success',
         title: 'Cập nhập thành công!',
@@ -74,7 +74,7 @@ export class EditCustomerComponent implements OnInit {
           popup: 'animate__animated animate__fadeOutUp'
         }
       });
-      this.router.navigateByUrl('customer/list');
+      this.router.navigateByUrl('/customer/list');
     })
   }
 

@@ -14,6 +14,7 @@ import {ContractListComponent} from './contract/contract-list/contract-list.comp
 import {HttpClientModule} from "@angular/common/http";
 import {CustomerModule} from "./customer/customer.module";
 import {FacilityModule} from "./facility/facility.module";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {FacilityModule} from "./facility/facility.module";
     ReactiveFormsModule,
     HttpClientModule,
     CustomerModule,
-    FacilityModule
+    FacilityModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

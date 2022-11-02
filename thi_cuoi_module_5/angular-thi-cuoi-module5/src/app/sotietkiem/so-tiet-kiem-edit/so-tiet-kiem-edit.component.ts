@@ -33,6 +33,7 @@ export class SoTietKiemEditComponent implements OnInit {
     const id = Number(this.activatedRoute.snapshot.params.id);
     this.soTietKiemService.findById(id).subscribe(value => {
       this.soTietKiem = value;
+      console.log(value );
       this.formEdit.patchValue(value);
     });
     this.formEdit = new FormGroup({

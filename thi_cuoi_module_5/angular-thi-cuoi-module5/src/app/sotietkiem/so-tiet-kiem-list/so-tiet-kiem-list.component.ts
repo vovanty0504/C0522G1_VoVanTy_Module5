@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class SoTietKiemListComponent implements OnInit {
 
   listPaging: SoTietKiem[];
-  numberRecord = 5;
+  numberRecord = 1;
   curPage = 1;
   totalPage: number;
   khachHangList: KhachHang[];
@@ -57,15 +57,15 @@ export class SoTietKiemListComponent implements OnInit {
 
   }
 
-  // next(): void {
-  //   this.curPage++;
-  //   this.ngOnInit();
-  // }
-  //
-  // previous(): void {
-  //   this.curPage--;
-  //   this.ngOnInit();
-  // }
+  next(): void {
+    this.curPage++;
+    this.ngOnInit();
+  }
+
+  previous(): void {
+    this.curPage--;
+    this.ngOnInit();
+  }
   //
   // searchByMore() {
   //   this.curPage = 1;

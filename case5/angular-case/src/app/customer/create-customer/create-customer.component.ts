@@ -47,7 +47,7 @@ export class CreateCustomerComponent implements OnInit {
 
   createCustomer(): void {
     const customers = this.formCreateCustomer.value;
-    this.customerService.saveCustomer(customers).subscribe(value => {
+    this.customerService.addNew(customers).subscribe(value => {
       Swal.fire({
         icon: 'success',
         title: 'Thêm Mới Thành Công!!',
