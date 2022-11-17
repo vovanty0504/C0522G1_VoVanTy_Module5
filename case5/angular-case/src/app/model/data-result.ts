@@ -1,4 +1,4 @@
 export interface DataResult<T> {
-  content: T[];
-  totalElements: number;
+    content: T[];
+    totalElements: number;
 }

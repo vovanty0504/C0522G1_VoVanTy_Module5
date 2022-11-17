@@ -35,6 +35,7 @@ export class EditCustomerComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.activatedRoute.snapshot.params.idUpdate);
+
     this.customerService.findById(id).subscribe(value => {
       this.customers = value
       console.log(value)

@@ -42,7 +42,6 @@ public class CustomerRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<CustomerDto> getCustomer(@PathVariable int id) {
-
         Customer customer = customerService.findById(id).get();
         CustomerDto customerDto = new CustomerDto();
         BeanUtils.copyProperties(customer, customerDto);
